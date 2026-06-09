@@ -1,0 +1,11 @@
+.container {
+  & button {
+    color: #fff;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    width: 100%;
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    padding: 0.25rem;
+  }
+}

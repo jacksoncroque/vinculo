@@ -1,0 +1,69 @@
+@use '_mixins' as *;
+
+.container {
+  width: 100%;
+  height: 100vh;
+
+  &Wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+
+    &Left {
+      color: #fff;
+      width: 50%;
+      background: linear-gradient(135deg, oklch(0.62 0.18 265), oklch(0.7 0.16 200));
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @media (max-width: $tablet) {
+        display: none;
+      }
+
+      & div {
+        span {
+          padding: 0.75rem;
+          background-color: #6897f1;
+          border-radius: 1rem;
+          margin: 0.5rem;
+        }
+      }
+
+      & div {
+        width: 60%;
+
+        & > h1 {
+          font-size: var(--text-2xl);
+        }
+
+        & > p {
+          font-size: var(--text-sm);
+        }
+      }
+
+      & > div {
+        font-size: var(--text-sm);
+      }
+    }
+
+    &Right {
+      width: 50%;
+      background-color: var(--color-background);
+      padding: 3rem;
+
+      & > div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      @media (max-width: $tablet) {
+        width: 100%;
+      }
+    }
+  }
+}

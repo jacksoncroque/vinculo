@@ -1,8 +1,19 @@
+import cn from 'classnames';
 
-const Input = () => {
+import styles from './Input.module.scss';
+
+const Input = ({ type = 'text', name, id, required = false, label, placeholder = '' }) => {
   return (
-    <div>Input</div>
-  )
-}
+    <input
+      className={cn(styles.input, styles)}
+      type={type}
+      name={name}
+      id={id}
+      label={label}
+      placeholder={placeholder}
+      required={required}
+    />
+  );
+};
 
-export default Input
+export default Input;
