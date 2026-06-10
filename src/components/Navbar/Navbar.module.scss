@@ -1,0 +1,53 @@
+.container {
+  position: fixed;
+  border-bottom: 0.1px solid #76767634;
+  width: 100%;
+  z-index: 5;
+  top: 0;
+  left: 0;
+    background-color: #ffffffde;
+
+
+  &Wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: var(--navbar-height);
+    max-width: var(--max-container-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+    gap: 2rem;
+
+    &Search {
+      display: flex;
+      position: relative;
+      align-items: center;
+      max-width: 24rem;
+      width: 100%;
+
+      & > svg {
+        position: absolute;
+        top: 11px;
+        left: 9px;
+        color: var(--color-text-muted);
+      }
+
+      &Input {
+        width: 100%;
+      align-items: center;
+
+        & > input {
+          padding: 0 2rem;
+          width: 100%;
+        }
+      }
+    }
+
+    &Sections {
+        display: flex;
+        gap: 1rem;
+        margin-left: auto;
+        align-items: center;
+    }
+  }
+}

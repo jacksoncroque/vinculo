@@ -1,7 +1,13 @@
+import cn from "classnames"
 
-const Avatar = () => {
+import styles from "./Avatar.module.scss"
+
+
+const Avatar = ({customStyle = "", label}) => {
   return (
-    <div>Avatar</div>
+    <div className={cn(styles.container, customStyle)}>
+      {label}
+    </div>
   )
 }
 

@@ -1,5 +1,7 @@
 import { Outlet } from 'react-router';
 
+import Logo from '../../components/Logo/Logo';
+
 import styles from './AuthLayout.module.scss';
 
 const AuthLayout = () => {
@@ -9,10 +11,7 @@ const AuthLayout = () => {
         <div className={styles.containerWrapper}>
           <div className={styles.containerWrapperLeft}>
             <div>
-              <h3>
-                <span>v</span>
-                vínculo
-              </h3>
+              <Logo customStyles={styles.containerWrapperLeftLogo} />
             </div>
             <div>
               <h1>Conecte-se às pessoas que importam.</h1>

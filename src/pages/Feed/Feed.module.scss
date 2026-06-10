@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - var(--navbar-height));
+  max-width: var(--max-container-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+  flex-direction: column;
+}

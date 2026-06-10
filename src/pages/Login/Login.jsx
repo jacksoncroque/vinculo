@@ -2,15 +2,13 @@ import { NavLink } from 'react-router';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input';
 import styles from './Login.module.scss';
+import Logo from '../../components/Logo/Logo';
 
 const Login = () => {
   return (
     <div className={styles.container}>
       <div className={styles.containerWrapper}>
-        <div className={styles.containerWrapperLogo}>
-          <span>v</span>
-          <h3>vínculo</h3>
-        </div>
+        <Logo customStyles={styles.containerWrapperLogo} />
         <div className={styles.containerWrapperWelcome}>
           <h1>Bem-vindo de volta</h1>
           <p>Entre para ver o que seus amigos andam compartilhando.</p>
