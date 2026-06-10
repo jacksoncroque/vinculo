@@ -6,4 +6,34 @@
   margin: 0 auto;
   padding: 0 1rem;
   flex-direction: column;
+  gap: 1.5rem;
+
+  &Wrapper {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+
+    &Main {
+      width: 70%;
+
+      &Card {
+        display: flex;
+        gap: .5rem;
+
+        & > div:last-of-type {
+          flex: 1;
+
+          & > div:last-of-type {
+            width: 5rem;
+            justify-self: flex-end;
+            margin: 0.5rem 0 0 0;
+          }
+        }
+      }
+    }
+
+    &Aside {
+      width: 30%;
+    }
+  }
 }

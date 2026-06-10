@@ -1,8 +1,9 @@
+import cn from "classnames"
 
-const Card = () => {
-  return (
-    <div>Card</div>
-  )
-}
+import styles from './Card.module.scss';
 
-export default Card
+const Card = ({ children, customStyle }) => {
+  return <div className={cn(styles.container, customStyle)}>{children}</div>;
+};
+
+export default Card;

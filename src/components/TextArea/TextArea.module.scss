@@ -1,0 +1,11 @@
+.container {
+  & > textarea {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    width: 100%;
+    max-width: 50rem;
+    height: 5rem ;
+    resize: none;
+    padding: .25rem .5rem;
+  }
+}
