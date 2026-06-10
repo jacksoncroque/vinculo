@@ -16,27 +16,26 @@ const Login = () => {
           <p>Entre para ver o que seus amigos andam compartilhando.</p>
         </div>
         <form>
-          <label htmlFor="email">
-            E-mail
-            <Input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="voce@exemplo.com"
-              required
-            />
-          </label>
-          <div>
-            <label htmlFor="password">Senha</label>
-            <span>Esqueci minha senha</span>
-          </div>
           <Input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="········"
+            label="E-mail"
+            text="E-mail"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="voce@exemplo.com"
             required
           />
+          <div className={styles.containerWrapperForgotPass}>
+            <a>Esqueci minha senha</a>
+            <Input
+              label="Senha"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="········"
+              required
+            />
+          </div>
           <Button
             type="submit"
             label={'Entrar'}

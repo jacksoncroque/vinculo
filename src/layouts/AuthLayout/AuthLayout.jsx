@@ -21,9 +21,7 @@ const AuthLayout = () => {
             <div>&copy; vínculo · demo de design</div>
           </div>
           <div className={styles.containerWrapperRight}>
-            <div>
-              <Outlet />
-            </div>
+            <Outlet />
           </div>
         </div>
       </div>
