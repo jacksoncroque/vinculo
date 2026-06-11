@@ -17,6 +17,10 @@
       width: 100%;
       justify-content: space-between;
 
+      & > h5 {
+        color: var(--color-text);
+      }
+
       & > span {
         font-size: var(--text-xs);
         color: var(--color-text-muted);
