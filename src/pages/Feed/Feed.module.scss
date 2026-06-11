@@ -15,10 +15,11 @@
 
     &Main {
       width: 70%;
+      ;
 
       &Card {
         display: flex;
-        gap: .5rem;
+        gap: 1rem;
 
         & > div:last-of-type {
           flex: 1;
