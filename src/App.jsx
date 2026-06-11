@@ -3,12 +3,12 @@ import { Routes, Route } from 'react-router';
 import AppLayout from './layouts/AppLayout';
 import AuthLayout from './layouts/AuthLayout';
 
+import FriendsRequests from './pages/FriendsRequests';
+import Friends from './pages/Friends/Friends';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Feed from './pages/Feed';
-import Register from './pages/Register';
-import Friends from './pages/Friends/Friends';
-import FriendsRequests from './pages/FriendsRequests';
-import Profile from './pages/Profile';
 
 function App() {
   return (

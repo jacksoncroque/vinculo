@@ -1,2 +1,7 @@
 @use '_reset';
 @use '_variables';
+
+html {
+  font-family: var(--font-sans);
+}
+
