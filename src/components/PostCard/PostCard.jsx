@@ -1,40 +1,11 @@
 import moment from '../../config/moment';
 
 import CommentList from '../CommentList/CommentList';
+import CommentForm from '../CommentForm/CommentForm';
 import Avatar from '../Avatar/Avatar';
 import Card from '../Card/Card';
 
 import styles from './PostCard.module.scss';
-
-// const data = [
-//   {
-//     id: 1,
-//     authorId: 1,
-//     content: 'Ola! Este e um post de exemplo.',
-//     createdAt: '2026-06-08 22:10:08',
-//     updatedAt: '2026-06-08 22:10:08',
-//     author: {
-//       id: 1,
-//       name: 'Ana Souza',
-//       email: 'ana@example.com',
-//     },
-//     comments: [
-//       {
-//         id: 1,
-//         postId: 1,
-//         authorId: 2,
-//         content: 'Comentario de exemplo de um amigo.',
-//         createdAt: '2026-06-08 22:10:08',
-//         updatedAt: '2026-06-08 22:10:08',
-//         author: {
-//           id: 2,
-//           name: 'Bruno Lima',
-//           email: 'bruno@example.com',
-//         },
-//       },
-//     ],
-//   },
-// ];
 
 const PostCard = ({ post }) => {
   return (
@@ -72,6 +43,9 @@ const PostCard = ({ post }) => {
             <span className={styles.containerCommentsSpan}>Seja o primeiro a comentar.</span>
           </>
         )}
+      </div>
+      <div>
+        <CommentForm />
       </div>
     </Card>
   );
