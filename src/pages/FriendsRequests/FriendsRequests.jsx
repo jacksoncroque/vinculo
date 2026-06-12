@@ -10,7 +10,7 @@ const Profile = () => {
           <h3>Solicitações de amizade</h3>
           <p>Pessoas que querem se conectar com você.</p>
           <div>
-            <FriendRequestItem />
+            <FriendRequestItem name="Julinha" email="xulinhaxereca@xmail.xom" label="XX" />
           </div>
         </div>
       </div>

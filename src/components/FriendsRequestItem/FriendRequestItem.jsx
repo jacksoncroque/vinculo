@@ -5,17 +5,17 @@ import ChipButton from '../ChipButton/ChipButton';
 
 import styles from './FriendRequestItem.module.scss';
 
-const FriendRequestItem = () => {
+const FriendRequestItem = ({ label, name, email, friendsInComunm = 'Nenhum amigo' }) => {
   return (
     <Card>
       <div className={styles.container}>
         <div className={styles.containerAvatar}>
-          <Avatar label="JM" />
+          <Avatar label={label} />
         </div>
         <div className={styles.containerInfo}>
-          <h5>Júlia Mendes</h5>
-          <p>julia.m@exemplo.com</p>
-          <p>2 amigos em comum</p>
+          <h5>{name}</h5>
+          <p>{email}</p>
+          <p>{`${friendsInComunm} em comum`}</p>
         </div>
         <div className={styles.containerActions}>
           <div>
