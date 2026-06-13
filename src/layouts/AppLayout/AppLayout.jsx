@@ -2,16 +2,19 @@ import { Outlet } from 'react-router';
 
 import styles from './AppLayout.module.scss';
 import Navbar from '../../components/Navbar/Navbar';
+import { UserContext } from '../../contexts/UserContext';
 
 const AppLayout = () => {
   return (
-    <div className={styles.container}>
-      <Navbar />
+    <UserContext>
+      <div className={styles.container}>
+        <Navbar />
 
-      <div className={styles.containerWrapper}>
-        <Outlet />
+        <div className={styles.containerWrapper}>
+          <Outlet />
+        </div>
       </div>
-    </div>
+    </UserContext>
   );
 };
 

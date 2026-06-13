@@ -1,3 +1,4 @@
+import FriendSugestion from '../../components/FriendSugestion/FriendSugestion';
 import PostCard from '../../components/PostCard/PostCard';
 import TextArea from '../../components/TextArea/TextArea';
 import Avatar from '../../components/Avatar/Avatar';
@@ -46,12 +47,11 @@ const Feed = () => {
               <Avatar label="AS" />
             </div>
             <div>
-              <TextArea placeholder={`No que você está pensando, ${data[0].author.name}`} />
+              <TextArea placeholder={`No que você está pensando, ${data[0].author.name}?`} />
               <Button label="Publicar" />
             </div>
           </Card>
 
-          
           {data.map((post) => (
             <PostCard
               key={post.id}
@@ -60,7 +60,21 @@ const Feed = () => {
           ))}
         </div>
         <div className={styles.containerWrapperAside}>
-          <Card>Aside</Card>
+          <Card>
+            <div className={styles.containerWrapperAsideInfo}>
+              <h5>Sugestões</h5>
+              <span>Pessoas que talvez você conheça</span>
+            </div>
+            <FriendSugestion />
+          </Card>
+          <Card>
+            <div className={styles.containerWrapperAsideFooter}>
+              <p>
+                <strong>vínculo</strong> · uma referência visual de design para uma rede social
+                leve. Adapte livremente em React + SCSS.
+              </p>
+            </div>
+          </Card>
         </div>
       </div>
     </div>
