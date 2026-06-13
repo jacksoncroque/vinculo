@@ -1,4 +1,4 @@
-import moment from '../../config/moment';
+import moment from '../../utils/moment';
 
 import CommentList from '../CommentList/CommentList';
 import CommentForm from '../CommentForm/CommentForm';

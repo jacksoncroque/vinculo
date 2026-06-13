@@ -1,4 +1,4 @@
-import moment from '../../config/moment';
+import moment from '../../utils/moment';
 import Avatar from '../Avatar/Avatar';
 import Card from '../Card/Card';
 
