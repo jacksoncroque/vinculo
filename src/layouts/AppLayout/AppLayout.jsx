@@ -2,11 +2,11 @@ import { Outlet } from 'react-router';
 
 import styles from './AppLayout.module.scss';
 import Navbar from '../../components/Navbar/Navbar';
-import { UserContext } from '../../contexts/UserContext';
+import { UserProvider } from '../../contexts/UserContext';
 
 const AppLayout = () => {
   return (
-    <UserContext>
+    <UserProvider>
       <div className={styles.container}>
         <Navbar />
 
@@ -14,7 +14,7 @@ const AppLayout = () => {
           <Outlet />
         </div>
       </div>
-    </UserContext>
+    </UserProvider>
   );
 };
 

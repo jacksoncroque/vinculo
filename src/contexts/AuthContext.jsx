@@ -1,7 +1,8 @@
-import { Children, createContext, useContext, useState } from 'react';
+import { Children, createContext, useContext, useEffect, useState } from 'react';
+import { redirect, useNavigate } from 'react-router';
 
-import { login } from '../services/auth.service';
 import { useGlobalContext } from './GlobalContext';
+import { login } from '../services/auth.service';
 import { tokenName } from '../services/api';
 
 const AuthContext = createContext();
@@ -15,6 +16,7 @@ const initialState = {
 
 const AuthProvider = ({ children }) => {
   const [state, setState] = useState(initialState);
+  const navigate = useNavigate();
   const { toggleLoading, showSucessMessage, showErrorMessage } = useGlobalContext();
 
   const handleLogin = async (email, password) => {
@@ -29,6 +31,7 @@ const AuthProvider = ({ children }) => {
         setState((prevState) => ({
           ...prevState,
           user: res.data.user,
+          isAuthenticated: true,
           token: res.data.token,
         }));
       } else {
@@ -47,6 +50,7 @@ const AuthProvider = ({ children }) => {
   const updateAuthenticatedUser = () => {};
 
   const values = {
+    state,
     handleLogin,
     register,
     logout,
@@ -54,10 +58,20 @@ const AuthProvider = ({ children }) => {
     updateAuthenticatedUser,
   };
 
+  useEffect(() => {
+    if (state.isAuthenticated === true) {
+      navigate('/feed');
+    }
+  }, [state.isAuthenticated, navigate]);
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
+
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
 
 const useAuthContext = () => {
   return useContext(AuthContext);
 };
-export { AuthContext, useAuthContext };
+export { AuthProvider, useAuthContext };

@@ -4,14 +4,16 @@ const UserContext = createContext();
 
 const initialState = {};
 
+const values = {};
+
 const UserProvider = ({ children }) => {
   const [state, setState] = useState(initialState);
 
-  return <UserContext.Provider>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
 };
 
 const useUserContext = () => {
   return useContext(useUserContext);
 };
 
-export { UserContext, useUserContext };
+export { UserProvider, useUserContext };
