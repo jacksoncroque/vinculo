@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router';
 
+import { AuthProvider } from '../../contexts/AuthContext';
 import Logo from '../../components/Logo/Logo';
 
 import styles from './AuthLayout.module.scss';
-import { AuthContext } from '../../contexts/AuthContext';
 
 const AuthLayout = () => {
   return (
-    <AuthContext>
+    <AuthProvider>
       <div>
         <div className={styles.container}>
           <div className={styles.containerWrapper}>
@@ -15,7 +15,7 @@ const AuthLayout = () => {
               <div>
                 <Logo customStyles={styles.containerWrapperLeftLogo} />
               </div>
-              <div>
+              <div className={styles.containerWrapperLeftMain}>
                 <h1>Conecte-se às pessoas que importam.</h1>
                 <p>Uma rede social simples, leve e feita para conversas reais entre amigos.</p>
               </div>
@@ -27,7 +27,7 @@ const AuthLayout = () => {
           </div>
         </div>
       </div>
-    </AuthContext>
+    </AuthProvider>
   );
 };
 

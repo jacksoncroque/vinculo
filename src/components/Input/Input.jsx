@@ -5,11 +5,13 @@ import styles from './Input.module.scss';
 const Input = ({
   id,
   name,
+  value = "",
   label = null,
   type = 'text',
   required = false,
   placeholder = '',
   customStyles = '',
+  onChange = () => {},
 }) => {
   return (
     <div className={cn(styles.container, customStyles)}>
@@ -21,6 +23,8 @@ const Input = ({
         id={id}
         placeholder={placeholder}
         required={required}
+        onChange={onChange}
+        value={value}
       />
     </div>
   );
