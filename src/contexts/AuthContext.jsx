@@ -74,7 +74,6 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {};
   const checkSession = () => {};
   const updateAuthenticatedUser = () => {};
 
@@ -82,7 +81,6 @@ const AuthProvider = ({ children }) => {
     state,
     handleLogin,
     handleRegister,
-    logout,
     checkSession,
     updateAuthenticatedUser,
   };
@@ -94,8 +92,9 @@ const AuthProvider = ({ children }) => {
   }, [state.isAuthenticated, navigate]);
 
   useEffect(() => {
-    console.log(state);
-  }, [state]);
+    // eslint-disable-next-line
+    setState(initialState);
+  }, []);
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

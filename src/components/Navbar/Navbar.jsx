@@ -10,8 +10,11 @@ import Input from '../Input/Input';
 import Avatar from '../Avatar/Avatar';
 
 import styles from './Navbar.module.scss';
+import { useUserContext } from '../../contexts/UserContext';
 
 const Navbar = () => {
+  const { handleLogout } = useUserContext();
+
   const [open, setOpen] = useState(false);
 
   const getNavLinkClass = ({ isActive }) =>
@@ -61,7 +64,7 @@ const Navbar = () => {
             >
               Perfil
             </NavLink>
-            <button>Sair</button>
+            <button onClick={handleLogout}>Sair</button>
             <Avatar label="MC" />
           </div>
         </div>
@@ -119,7 +122,7 @@ const Navbar = () => {
                       <NavLink to="/profile">Perfil</NavLink>
                     </li>
                   </ul>
-                  <button>Sair</button>
+                  <button onClick={handleLogout}>Sair</button>
                 </div>
               </div>
             </motion.div>
