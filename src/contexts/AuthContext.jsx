@@ -2,7 +2,7 @@ import { Children, createContext, useContext, useEffect, useState } from 'react'
 import { redirect, useNavigate } from 'react-router';
 
 import { useGlobalContext } from './GlobalContext';
-import { login } from '../services/auth.service';
+import { login, register } from '../services/auth.service';
 import { tokenName } from '../services/api';
 
 const AuthContext = createContext();
@@ -44,7 +44,36 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = (name, email, password) => {};
+  const handleRegister = async (name, email, password) => {
+    try {
+      toggleLoading(true);
+
+      const res = await register(name, email, password);
+
+      if (res.success) {
+        setState((prevState) => ({
+          ...prevState,
+          user: res.data.user,
+          isAuthenticated: true,
+          token: res.data.token,
+        }));
+      } else {
+        showErrorMessage(res.error);
+      }
+
+      return res;
+    } catch (error) {
+      console.log(error);
+
+      return {
+        success: false,
+        error: 'Erro interno ao criar conta',
+      };
+    } finally {
+      toggleLoading(false);
+    }
+  };
+
   const logout = () => {};
   const checkSession = () => {};
   const updateAuthenticatedUser = () => {};
@@ -52,7 +81,7 @@ const AuthProvider = ({ children }) => {
   const values = {
     state,
     handleLogin,
-    register,
+    handleRegister,
     logout,
     checkSession,
     updateAuthenticatedUser,
