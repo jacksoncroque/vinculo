@@ -10,10 +10,10 @@ import Input from '../Input/Input';
 import Avatar from '../Avatar/Avatar';
 
 import styles from './Navbar.module.scss';
-import { useUserContext } from '../../contexts/UserContext';
+import { useGlobalContext } from '../../contexts/GlobalContext';
 
 const Navbar = () => {
-  const { handleLogout } = useUserContext();
+  const { handleLogout } = useGlobalContext();
 
   const [open, setOpen] = useState(false);
 

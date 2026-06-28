@@ -3,7 +3,6 @@ import { NavLink } from 'react-router';
 import { useEffect, useState } from 'react';
 
 import { useGlobalContext } from '../../contexts/GlobalContext';
-import { useAuthContext } from '../../contexts/AuthContext';
 
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input';
@@ -12,7 +11,7 @@ import Logo from '../../components/Logo/Logo';
 import styles from './Login.module.scss';
 
 const Login = () => {
-  const { handleLogin } = useAuthContext();
+  const { handleLogin } = useGlobalContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState(null);
