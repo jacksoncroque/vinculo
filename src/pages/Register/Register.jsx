@@ -2,15 +2,15 @@ import { NavLink } from 'react-router';
 
 import { useState } from 'react';
 
-import { useAuthContext } from '../../contexts/AuthContext';
-
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input';
+
+import { useGlobalContext } from '../../contexts/GlobalContext';
 
 import styles from './Register.module.scss';
 
 const Register = () => {
-  const { handleRegister } = useAuthContext();
+  const { handleRegister } = useGlobalContext();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
