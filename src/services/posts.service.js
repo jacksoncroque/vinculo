@@ -1,6 +1,18 @@
-const getFeed = () => {};
+import { api } from './api';
 
-const createPost = (content) => {};
+const getFeed = async () => {
+  const res = await api.get('posts/feed');
+
+  return res;
+};
+
+const createPost = async (content) => {
+  const res = await api.post('posts', {
+    content,
+  });
+
+  return res;
+};
 
 const getUserPosts = (userId) => {};
 
@@ -8,7 +20,13 @@ const updatePost = (postId, content) => {};
 
 const deletePost = (postId) => {};
 
-const createComment = (postId, content) => {};
+const createComment = async (postId, content) => {
+  const res = await api.post(`posts/${postId}/comments`, {
+    content,
+  });
+
+  return res;
+};
 
 const deleteComment = (commentId) => {};
 
