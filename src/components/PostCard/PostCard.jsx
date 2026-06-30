@@ -45,7 +45,7 @@ const PostCard = ({ post }) => {
         )}
       </div>
       <div>
-        <CommentForm />
+        <CommentForm postId={post.id} />
       </div>
     </Card>
   );

@@ -6,38 +6,18 @@ import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
 
 import styles from './Feed.module.scss';
-
-const data = [
-  {
-    id: 1,
-    authorId: 1,
-    content: 'Ola! Este e um post de exemplo.',
-    createdAt: '2026-06-08 22:10:08',
-    updatedAt: '2026-06-08 22:10:08',
-    author: {
-      id: 1,
-      name: 'Ana Souza',
-      email: 'ana@example.com',
-    },
-    comments: [
-      {
-        id: 1,
-        postId: 1,
-        authorId: 2,
-        content: 'Comentario de exemplo de um amigo.',
-        createdAt: '2026-06-08 22:10:08',
-        updatedAt: '2026-06-08 22:10:08',
-        author: {
-          id: 2,
-          name: 'Bruno Lima',
-          email: 'bruno@example.com',
-        },
-      },
-    ],
-  },
-];
+import { useFeedContext } from '../../contexts/FeedContext';
+import { useEffect } from 'react';
 
 const Feed = () => {
+  const { state, handleInputChange, getPostsList, postPost } = useFeedContext();
+
+  const data = state.postsList;
+
+  useEffect(() => {
+    getPostsList();
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.containerWrapper}>
@@ -47,8 +27,17 @@ const Feed = () => {
               <Avatar label="AS" />
             </div>
             <div>
-              <TextArea placeholder={`No que você está pensando, ${data[0].author.name}?`} />
-              <Button label="Publicar" />
+              <TextArea
+                id={''}
+                name={''}
+                placeholder={`No que você está pensando?`}
+                onChange={handleInputChange}
+                value={state.inputValue}
+              />
+              <Button
+                label="Publicar"
+                onClick={postPost}
+              />
             </div>
           </Card>
 

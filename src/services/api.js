@@ -3,9 +3,15 @@ const apiUrl = import.meta.env.VITE_API_URL;
 export const tokenName = 'vinculo:token';
 
 const getAuthToken = () => {
-  const token = localStorage.getItem(tokenName);
+  try {
+    const token = localStorage.getItem(tokenName);
 
-  return token ?? '';
+    const tokenFormated = JSON.parse(token);
+
+    return tokenFormated.token ?? '';
+  } catch (error) {
+    return '';
+  }
 };
 
 export const api = {

@@ -7,6 +7,7 @@ import { useGlobalContext } from '../../contexts/GlobalContext';
 import { tokenName } from '../../services/api';
 
 import styles from './AppLayout.module.scss';
+import { FeedProvider } from '../../contexts/FeedContext';
 
 const AppLayout = () => {
   const { getItem } = useLocalStorage(tokenName);
@@ -23,13 +24,15 @@ const AppLayout = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <Navbar />
+    <FeedProvider>
+      <div className={styles.container}>
+        <Navbar />
 
-      <div className={styles.containerWrapper}>
-        <Outlet />
+        <div className={styles.containerWrapper}>
+          <Outlet />
+        </div>
       </div>
-    </div>
+    </FeedProvider>
   );
 };
 
