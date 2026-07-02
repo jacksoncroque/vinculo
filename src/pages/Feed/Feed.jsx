@@ -37,6 +37,7 @@ const Feed = () => {
               <Button
                 label="Publicar"
                 onClick={postPost}
+                disabled={state.inputValue == ""}
               />
             </div>
           </Card>

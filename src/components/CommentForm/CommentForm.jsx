@@ -10,7 +10,7 @@ import styles from './CommentForm.module.scss';
 
 const CommentForm = ({ postId }) => {
   const [input, setInput] = useState('');
-  const { createNewComment } = useFeedContext();
+  const { state, createNewComment } = useFeedContext();
 
   const handleChangeInput = (e) => {
     setInput(e.target.value);
@@ -42,6 +42,7 @@ const CommentForm = ({ postId }) => {
           key="button"
           label="Enviar"
           onClick={createComment}
+          disabled={input == ''}
         />
       </div>
     </div>

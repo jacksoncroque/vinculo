@@ -15,6 +15,7 @@ const Button = ({
         onClick={onClick}
         type={type}
         disabled={disabled}
+        className={cn({ [styles.containerDisabled]: disabled })}
       >
         {label}
       </button>
