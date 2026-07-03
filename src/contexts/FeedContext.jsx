@@ -1,7 +1,9 @@
-import { input } from 'framer-motion/client';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useGlobalContext } from './GlobalContext';
+
 import { createComment, createPost, getFeed } from '../services/posts.service';
+import { useGlobalContext } from './GlobalContext';
+
+import { friendRequest } from '../services/friendships.service';
 import { getUsers } from '../services/users.service';
 
 const FeedContext = createContext();
@@ -14,7 +16,7 @@ const initialState = {
 
 const FeedProvider = ({ children }) => {
   const [state, setState] = useState(initialState);
-  const { toggleLoading, showErrorMessage } = useGlobalContext();
+  const { toggleLoading, showErrorMessage, showSuccesMessage } = useGlobalContext();
 
   const handleInputChange = (e) => {
     setState((prev) => {
@@ -93,9 +95,29 @@ const FeedProvider = ({ children }) => {
     }
   };
 
+  const sendFriendRequest = async (userId) => {
+    try {
+      toggleLoading(true);
+
+      const res = await friendRequest(userId);
+
+      if (res.success) {
+        showSuccesMessage('Pedido de amizade enviado.');
+      } else {
+        showErrorMessage('Falha ao enviar pedido de amizade.');
+      }
+      
+    } catch (error) {
+      console.log(error);
+    } finally {
+      toggleLoading(false);
+    }
+  };
+
   const values = {
     state,
     getFriendsSugestionList,
+    sendFriendRequest,
     handleInputChange,
     createNewComment,
     getPostsList,

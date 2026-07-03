@@ -1,3 +1,9 @@
+import { useEffect } from 'react';
+
+import { useGlobalContext } from '../../contexts/GlobalContext';
+import { useFeedContext } from '../../contexts/FeedContext';
+import getNameInitials from '../../utils/getNameInitials';
+
 import FriendSugestion from '../../components/FriendSugestion/FriendSugestion';
 import PostCard from '../../components/PostCard/PostCard';
 import TextArea from '../../components/TextArea/TextArea';
@@ -6,10 +12,6 @@ import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
 
 import styles from './Feed.module.scss';
-import { useFeedContext } from '../../contexts/FeedContext';
-import { useEffect } from 'react';
-import { useGlobalContext } from '../../contexts/GlobalContext';
-import getNameInitials from '../../utils/getNameInitials';
 
 const Feed = () => {
   const { state, handleInputChange, getPostsList, postPost } = useFeedContext();
@@ -18,9 +20,6 @@ const Feed = () => {
   const data = state.postsList;
 
   const userLogged = getNameInitials(globalState.user?.name);
-
-  console.log(globalState.user?.name);
-  
 
   useEffect(() => {
     getPostsList();

@@ -1,4 +1,10 @@
-const sendFriendRequest = (userId) => {};
+import { api } from './api';
+
+const friendRequest = async (userId) => {
+  const res = await api.post(`friendships/request/${userId}`);
+
+  return res;
+};
 
 const getReceivedRequests = () => {};
 
@@ -13,7 +19,7 @@ const removeFriendship = (friendshipId) => {};
 const getFriends = () => {};
 
 export {
-  sendFriendRequest,
+  friendRequest,
   getReceivedRequests,
   getSentRequests,
   acceptFriendship,
