@@ -8,14 +8,16 @@ const ChipButton = ({
   hasIcon = false,
   onClick = () => {},
   customStyle = '',
+  disabled = false,
 }) => {
   return (
     <button
-      className={cn(styles.button, customStyle)}
+      className={cn(styles.button, { [styles.buttonDisabled]: disabled })}
       type={type}
       onClick={onClick}
+      disabled={disabled}
     >
-      {hasIcon && "✓  "}
+      {hasIcon && '✓  '}
       {label}
     </button>
   );
