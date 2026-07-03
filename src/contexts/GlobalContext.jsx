@@ -130,6 +130,18 @@ const GlobalProvider = ({ children }) => {
     toggleLoading,
   };
 
+  useEffect(() => {
+    const user = getItem()?.user ?? null;
+    const token = getItem()?.token ?? null;
+
+    if (state.user === null && state.token === null && user && token) {
+      //eslint-disable-next-line
+      setState((prev) => {
+        return { ...prev, user, token, isAuthenticated: true };
+      });
+    }
+  }, [state]);
+
   return (
     <GlobalContext.Provider value={values}>
       {children}{' '}

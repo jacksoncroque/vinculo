@@ -2,6 +2,7 @@ import { input } from 'framer-motion/client';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useGlobalContext } from './GlobalContext';
 import { createComment, createPost, getFeed } from '../services/posts.service';
+import { getUsers } from '../services/users.service';
 
 const FeedContext = createContext();
 
@@ -30,6 +31,24 @@ const FeedProvider = ({ children }) => {
       if (res.success) {
         setState((prev) => {
           return { ...prev, postsList: res.data };
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      toggleLoading(false);
+    }
+  };
+
+  const getFriendsSugestionList = async () => {
+    try {
+      toggleLoading(true);
+
+      const res = await getUsers();
+
+      if (res.success) {
+        setState((prev) => {
+          return { ...prev, friendsSugestions: res.data };
         });
       }
     } catch (error) {
@@ -76,6 +95,7 @@ const FeedProvider = ({ children }) => {
 
   const values = {
     state,
+    getFriendsSugestionList,
     handleInputChange,
     createNewComment,
     getPostsList,
