@@ -23,6 +23,13 @@
         display: none;
       }
 
+      &Main {
+        & > h1, p {
+        color: #fff;
+
+        }
+      }
+
       & div {
         span {
           padding: 0.75rem;

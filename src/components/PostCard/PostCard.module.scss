@@ -19,6 +19,7 @@ div.container {
       & > h4 {
         font-size: var(--text-base);
         font-weight: var(--font-semibold);
+        color: var(--color-text);
       }
 
       & > span {
@@ -43,6 +44,7 @@ div.container {
   }
 
   &Comments {
+    margin: 0 0 .5rem 0;
     & > span {
       font-size: var(--text-xs);
       color: var(--color-text-muted);

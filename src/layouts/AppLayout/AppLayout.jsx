@@ -1,17 +1,38 @@
-import { Outlet } from 'react-router';
+import { Navigate, Outlet } from 'react-router';
+
+import Navbar from '../../components/Navbar/Navbar';
+import useLocalStorage from '../../hooks/LocalStorage';
+
+import { useGlobalContext } from '../../contexts/GlobalContext';
+import { tokenName } from '../../services/api';
 
 import styles from './AppLayout.module.scss';
-import Navbar from '../../components/Navbar/Navbar';
+import { FeedProvider } from '../../contexts/FeedContext';
 
 const AppLayout = () => {
-  return (
-    <div className={styles.container}>
-      <Navbar />
+  const { getItem } = useLocalStorage(tokenName);
 
-      <div className={styles.containerWrapper}>
-        <Outlet />
+  const session = getItem() ?? {};
+
+  if (!session.isAuthenticated) {
+    return (
+      <Navigate
+        to={'/login'}
+        replace
+      />
+    );
+  }
+
+  return (
+    <FeedProvider>
+      <div className={styles.container}>
+        <Navbar />
+
+        <div className={styles.containerWrapper}>
+          <Outlet />
+        </div>
       </div>
-    </div>
+    </FeedProvider>
   );
 };
 
