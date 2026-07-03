@@ -8,11 +8,19 @@ import Card from '../../components/Card/Card';
 import styles from './Feed.module.scss';
 import { useFeedContext } from '../../contexts/FeedContext';
 import { useEffect } from 'react';
+import { useGlobalContext } from '../../contexts/GlobalContext';
+import getNameInitials from '../../utils/getNameInitials';
 
 const Feed = () => {
   const { state, handleInputChange, getPostsList, postPost } = useFeedContext();
+  const { state: globalState } = useGlobalContext();
 
   const data = state.postsList;
+
+  const userLogged = getNameInitials(globalState.user?.name);
+
+  console.log(globalState.user?.name);
+  
 
   useEffect(() => {
     getPostsList();
@@ -24,7 +32,7 @@ const Feed = () => {
         <div className={styles.containerWrapperMain}>
           <Card customStyle={styles.containerWrapperMainCard}>
             <div>
-              <Avatar label="AS" />
+              <Avatar label={userLogged} />
             </div>
             <div>
               <TextArea
@@ -37,7 +45,7 @@ const Feed = () => {
               <Button
                 label="Publicar"
                 onClick={postPost}
-                disabled={state.inputValue == ""}
+                disabled={state.inputValue == ''}
               />
             </div>
           </Card>
