@@ -8,32 +8,35 @@ import { tokenName } from '../../services/api';
 
 import styles from './AppLayout.module.scss';
 import { FeedProvider } from '../../contexts/FeedContext';
+import { FriendsProvider } from '../../contexts/FriendsContext';
 
 const AppLayout = () => {
-  const { getItem } = useLocalStorage(tokenName);
+   const { getItem } = useLocalStorage(tokenName);
 
-  const session = getItem() ?? {};
+   const session = getItem() ?? {};
 
-  if (!session.isAuthenticated) {
-    return (
-      <Navigate
-        to={'/login'}
-        replace
-      />
-    );
-  }
+   if (!session.isAuthenticated) {
+      return (
+         <Navigate
+            to={'/login'}
+            replace
+         />
+      );
+   }
 
-  return (
-    <FeedProvider>
-      <div className={styles.container}>
-        <Navbar />
+   return (
+      <FeedProvider>
+         <FriendsProvider>
+            <div className={styles.container}>
+               <Navbar />
 
-        <div className={styles.containerWrapper}>
-          <Outlet />
-        </div>
-      </div>
-    </FeedProvider>
-  );
+               <div className={styles.containerWrapper}>
+                  <Outlet />
+               </div>
+            </div>
+         </FriendsProvider>
+      </FeedProvider>
+   );
 };
 
 export default AppLayout;

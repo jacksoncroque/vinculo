@@ -1,9 +1,9 @@
 import { api } from './api';
 
 const friendRequest = async (userId) => {
-  const res = await api.post(`friendships/request/${userId}`);
+   const res = await api.post(`friendships/request/${userId}`);
 
-  return res;
+   return res;
 };
 
 const getReceivedRequests = () => {};
@@ -16,14 +16,18 @@ const rejectFriendship = (friendshipId) => {};
 
 const removeFriendship = (friendshipId) => {};
 
-const getFriends = () => {};
+const getFriends = async () => {
+   const res = await api.get('friendships/friends');
+
+   return res;
+};
 
 export {
-  friendRequest,
-  getReceivedRequests,
-  getSentRequests,
-  acceptFriendship,
-  rejectFriendship,
-  removeFriendship,
-  getFriends,
+   getFriends,
+   friendRequest,
+   getSentRequests,
+   acceptFriendship,
+   rejectFriendship,
+   removeFriendship,
+   getReceivedRequests,
 };
