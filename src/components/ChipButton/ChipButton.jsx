@@ -12,7 +12,7 @@ const ChipButton = ({
 }) => {
   return (
     <button
-      className={cn(styles.button, { [styles.buttonDisabled]: disabled })}
+      className={cn(styles.button, customStyle,{ [styles.buttonDisabled]: disabled })}
       type={type}
       onClick={onClick}
       disabled={disabled}
