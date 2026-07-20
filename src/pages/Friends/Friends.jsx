@@ -9,16 +9,36 @@ import Card from '../../components/Card/Card';
 
 import styles from './Friends.module.scss';
 import cn from 'classnames';
+import { getUsers } from '../../services/users.service';
 
 const Friends = () => {
-   const { state, getFriendsList } = useFriendsContext();
+   const {
+      state,
+      getFriendsList,
+      receivedRequests,
+      sentRequest,
+      acceptFriendshipRequest,
+      rejectFriendshipRequest,
+      removeFriend,
+      getUsersList,
+   } = useFriendsContext();
    const [selectedFilter, setSelectedFilter] = useState('all');
 
    const data = state.friendsList;
 
    useEffect(() => {
-      console.log(selectedFilter);
+      if (selectedFilter === 'all') {
+         getUsersList();
+      }
+
+      if (selectedFilter === 'friends') {
+         getFriendsList();
+      }
    }, [selectedFilter]);
+
+   useEffect(() => {
+      console.log(data);
+   }, [data]);
 
    return (
       <div className={styles.container}>
@@ -55,7 +75,16 @@ const Friends = () => {
                   <Input placeholder="Buscar por nome..." />
                </div>
             </Card>
-            <div className={styles.containerWrapperGrid}></div>
+            <div className={styles.containerWrapperGrid}>
+               {data.map((user) => {
+                  return (
+                     <UserCard
+                        key={user.id}
+                        user={user}
+                     />
+                  );
+               })}
+            </div>
          </div>
       </div>
    );

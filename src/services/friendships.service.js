@@ -6,15 +6,35 @@ const friendRequest = async (userId) => {
    return res;
 };
 
-const getReceivedRequests = () => {};
+const getReceivedRequests = async () => {
+   const res = await api.get('friendships/requests');
 
-const getSentRequests = () => {};
+   return res;
+};
 
-const acceptFriendship = (friendshipId) => {};
+const getSentRequests = async () => {
+   const res = await api.get('friendships/sent');
 
-const rejectFriendship = (friendshipId) => {};
+   return res;
+};
 
-const removeFriendship = (friendshipId) => {};
+const acceptFriendship = async (friendshipId) => {
+   const res = await api.post(`friendships/${friendshipId}/accept`);
+
+   return res;
+};
+
+const rejectFriendship = async (friendshipId) => {
+   const res = await api.post(`friendships/${friendshipId}/reject`);
+
+   return res;
+};
+
+const removeFriendship = async (friendshipId) => {
+   const res = await api.delete(`friendships/${friendshipId}`);
+
+   return res;
+};
 
 const getFriends = async () => {
    const res = await api.get('friendships/friends');

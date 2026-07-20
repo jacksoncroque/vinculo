@@ -1,7 +1,15 @@
 import { createContext, useContext, useState } from 'react';
 import { useGlobalContext } from './GlobalContext';
 import { api } from '../services/api';
-import { getFriends } from '../services/friendships.service';
+import {
+   acceptFriendship,
+   getFriends,
+   getReceivedRequests,
+   getSentRequests,
+   rejectFriendship,
+   removeFriendship,
+} from '../services/friendships.service';
+import { getUsers } from '../services/users.service';
 
 const FriendsContext = createContext();
 
@@ -32,7 +40,137 @@ const FriendsProvider = ({ children }) => {
       }
    };
 
-   const values = { state, getFriendsList };
+   const receivedRequests = async () => {
+      try {
+         toggleLoading(true);
+
+         const res = await getReceivedRequests();
+
+         if (res.success) {
+            setState((prev) => {
+               return { ...prev, friendsList: res.data };
+            });
+         }
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
+      }
+   };
+
+   const sentRequest = async () => {
+      try {
+         toggleLoading(true);
+
+         const res = await getSentRequests();
+
+         if (res.success) {
+            setState((prev) => {
+               return { ...prev, friendsList: res.data };
+            });
+         }
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
+      }
+   };
+
+   const acceptFriendshipRequest = async () => {
+      try {
+         toggleLoading(true);
+
+         const res = await acceptFriendship();
+
+         if (res.success) {
+            setState((prev) => {
+               return { ...prev, friendsList: res.data };
+            });
+         }
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
+      }
+   };
+
+   const rejectFriendshipRequest = async () => {
+      try {
+         toggleLoading(true);
+
+         const res = await rejectFriendship();
+
+         if (res.success) {
+            setState((prev) => {
+               return { ...prev, friendsList: res.data };
+            });
+         }
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
+      }
+   };
+
+   const removeFriend = async () => {
+      try {
+         toggleLoading(true);
+
+         const res = await removeFriendship();
+
+         if (res.success) {
+            setState((prev) => {
+               return { ...prev, friendsList: res.data };
+            });
+         }
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
+      }
+   };
+
+   const getUsersList = async (search = '') => {
+      try {
+         toggleLoading(true);
+
+         const res = await getUsers(search);
+
+         if (res.success) {
+            setState((prev) => {
+               return { ...prev, friendsList: res.data };
+            });
+         }
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
+      }
+   };
+   const sendFriendRequest = async (userId) => {
+      try {
+         toggleLoading(true);
+
+         const res = await sentRequest(userId);
+         
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
+      }
+   };
+
+   const values = {
+      state,
+      getFriendsList,
+      receivedRequests,
+      sentRequest,
+      acceptFriendshipRequest,
+      rejectFriendshipRequest,
+      removeFriend,
+      getUsersList,
+      sendFriendRequest,
+   };
 
    return <FriendsContext.Provider value={values}>{children}</FriendsContext.Provider>;
 };
