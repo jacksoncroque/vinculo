@@ -5,7 +5,7 @@ import {
    acceptFriendship,
    getFriends,
    getReceivedRequests,
-   getSentRequests,
+   postFriendRequest,
    rejectFriendship,
    removeFriendship,
 } from '../services/friendships.service';
@@ -58,24 +58,6 @@ const FriendsProvider = ({ children }) => {
       }
    };
 
-   const sentRequest = async () => {
-      try {
-         toggleLoading(true);
-
-         const res = await getSentRequests();
-
-         if (res.success) {
-            setState((prev) => {
-               return { ...prev, friendsList: res.data };
-            });
-         }
-      } catch (error) {
-         console.log(error);
-      } finally {
-         toggleLoading(false);
-      }
-   };
-
    const acceptFriendshipRequest = async () => {
       try {
          toggleLoading(true);
@@ -112,11 +94,11 @@ const FriendsProvider = ({ children }) => {
       }
    };
 
-   const removeFriend = async () => {
+   const removeFriend = async (friendshipId) => {
       try {
          toggleLoading(true);
 
-         const res = await removeFriendship();
+         const res = await removeFriendship(friendshipId);
 
          if (res.success) {
             setState((prev) => {
@@ -151,8 +133,35 @@ const FriendsProvider = ({ children }) => {
       try {
          toggleLoading(true);
 
-         const res = await sentRequest(userId);
-         
+         const res = await postFriendRequest(userId);
+         console.log(res);
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
+      }
+   };
+
+   const getFriendsSugestionList = async () => {
+      try {
+         toggleLoading(true);
+
+         const res = await getUsers();
+
+         if (res.success) {
+            setState((prev) => {
+               return {
+                  ...prev,
+                  friendsList: res.data
+                     .filter((item) => {
+                        return item.friendship === null;
+                     })
+                     .sort((a, b) => {
+                        return a.mutualFriendsCount - b.mutualFriendsCount;
+                     }),
+               };
+            });
+         }
       } catch (error) {
          console.log(error);
       } finally {
@@ -164,7 +173,7 @@ const FriendsProvider = ({ children }) => {
       state,
       getFriendsList,
       receivedRequests,
-      sentRequest,
+      getFriendsSugestionList,
       acceptFriendshipRequest,
       rejectFriendshipRequest,
       removeFriend,

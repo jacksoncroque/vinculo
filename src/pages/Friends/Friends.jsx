@@ -16,9 +16,9 @@ const Friends = () => {
       state,
       getFriendsList,
       receivedRequests,
-      sentRequest,
       acceptFriendshipRequest,
       rejectFriendshipRequest,
+      getFriendsSugestionList,
       removeFriend,
       getUsersList,
    } = useFriendsContext();
@@ -33,6 +33,9 @@ const Friends = () => {
 
       if (selectedFilter === 'friends') {
          getFriendsList();
+      }
+      if (selectedFilter === 'suggestions') {
+         getFriendsSugestionList();
       }
    }, [selectedFilter]);
 
@@ -81,6 +84,7 @@ const Friends = () => {
                      <UserCard
                         key={user.id}
                         user={user}
+                        activeTab={selectedFilter}
                      />
                   );
                })}

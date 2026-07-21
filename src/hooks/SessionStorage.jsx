@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
-const useLocalStorage = (key) => {
+const useSessionStorage = (key) => {
   const getItem = useCallback(() => {
     try {
-      const item = localStorage.getItem(key);
+      const item = sessionStorage.getItem(key);
 
       if (!item) {
         return null;
@@ -11,7 +11,7 @@ const useLocalStorage = (key) => {
 
       return JSON.parse(item);
     } catch (error) {
-      console.error(`Error reading localStorage key "${key}"`, error);
+      console.error(`Error reading sessionStorage key "${key}"`, error);
       return null;
     }
   }, [key]);
@@ -19,9 +19,9 @@ const useLocalStorage = (key) => {
   const setItem = useCallback(
     (value) => {
       try {
-        localStorage.setItem(key, JSON.stringify(value));
+        sessionStorage.setItem(key, JSON.stringify(value));
       } catch (error) {
-        console.error(`Error writing localStorage key "${key}"`, error);
+        console.error(`Error writing sessionStorage key "${key}"`, error);
       }
     },
     [key]
@@ -29,9 +29,9 @@ const useLocalStorage = (key) => {
 
   const removeItem = useCallback(() => {
     try {
-      localStorage.removeItem(key);
+      sessionStorage.removeItem(key);
     } catch (error) {
-      console.error(`Error removing localStorage key "${key}"`, error);
+      console.error(`Error removing sessionStorage key "${key}"`, error);
     }
   }, [key]);
 
@@ -42,4 +42,4 @@ const useLocalStorage = (key) => {
   };
 };
 
-export default useLocalStorage;
+export default useSessionStorage;

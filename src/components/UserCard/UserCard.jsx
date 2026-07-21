@@ -4,20 +4,50 @@ import Card from '../Card/Card';
 
 import styles from './UserCard.module.scss';
 import { useFriendsContext } from '../../contexts/FriendsContext';
+import { removeFriendship } from '../../services/friendships.service';
 
-const UserCard = ({ user }) => {
-   const { sendFriendRequest, acceptFriendshipRequest, rejectFriendshipRequest, removeFriend } =
-      useFriendsContext();
+const UserCard = ({ user, activeTab }) => {
+   const {
+      sendFriendRequest,
+      acceptFriendshipRequest,
+      rejectFriendshipRequest,
+      removeFriend,
+      getFriendsList,
+      getUsersList,
+      getFriendsSugestionList,
+   } = useFriendsContext();
 
    const handleSendRequest = async () => {
       await sendFriendRequest(user.id);
+
+      if (activeTab === 'all') {
+         getUsersList();
+      }
+
+      if (activeTab === 'suggestions') {
+         console.log(getFriendsSugestionList());
+         
+         getFriendsSugestionList();
+      }
+   };
+
+   const handleRemoveFriendship = async (friendshipId) => {
+      await removeFriendship(friendshipId);
+
+      if (activeTab === 'all') {
+         getUsersList();
+      }
+
+      if (activeTab === 'friends') {
+         getFriendsList();
+      }
    };
 
    let status = '';
 
    if (user.friendship === null) {
       status = 'suggestion';
-   } else if (user.friendship.status === 'pending') {
+   } else if (user.friendship?.status === 'pending') {
       status = 'pending';
    } else {
       status = 'accepted';
@@ -43,6 +73,7 @@ const UserCard = ({ user }) => {
                   return (
                      <div className={styles.containerActionsSuggestion}>
                         <ChipButton
+                           type="button"
                            label="Adicionar amigo"
                            hasIcon={false}
                            onClick={handleSendRequest}
@@ -61,14 +92,20 @@ const UserCard = ({ user }) => {
 
                case 'accepted':
                default:
-                  <div className={styles.containerActions}>
-                     <ChipButton
-                        label="Amigos"
-                        hasIcon={true}
-                     />
-                     <button id="remove-button">Remover</button>
-                  </div>;
-                  break;
+                  return (
+                     <div className={styles.containerActions}>
+                        <ChipButton
+                           label="Amigos"
+                           hasIcon={true}
+                        />
+                        <button
+                           id="remove-button"
+                           onClick={handleRemoveFriendship}
+                        >
+                           Remover
+                        </button>
+                     </div>
+                  );
             }
          })()}
       </Card>
