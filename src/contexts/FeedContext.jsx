@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { createComment, createPost, getFeed } from '../services/posts.service';
 import { useGlobalContext } from './GlobalContext';
 
-import { friendRequest } from '../services/friendships.service';
+import { postFriendRequest } from '../services/friendships.service';
 import { getUsers } from '../services/users.service';
 
 const FeedContext = createContext();
@@ -99,7 +99,7 @@ const FeedProvider = ({ children }) => {
       try {
          toggleLoading(true);
 
-         const res = await friendRequest(userId);
+         const res = await postFriendRequest(userId);
 
          if (res.success) {
             showSuccesMessage('Pedido de amizade enviado.');

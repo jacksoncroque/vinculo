@@ -4,7 +4,7 @@ export const tokenName = 'vinculo:token';
 
 const getAuthToken = () => {
   try {
-    const token = localStorage.getItem(tokenName);
+    const token = sessionStorage.getItem(tokenName);
 
     const tokenFormated = JSON.parse(token);
 

@@ -1,6 +1,6 @@
 import { api } from './api';
 
-const friendRequest = async (userId) => {
+const postFriendRequest = async (userId) => {
    const res = await api.post(`friendships/request/${userId}`);
 
    return res;
@@ -8,12 +8,6 @@ const friendRequest = async (userId) => {
 
 const getReceivedRequests = async () => {
    const res = await api.get('friendships/requests');
-
-   return res;
-};
-
-const getSentRequests = async () => {
-   const res = await api.get('friendships/sent');
 
    return res;
 };
@@ -44,8 +38,7 @@ const getFriends = async () => {
 
 export {
    getFriends,
-   friendRequest,
-   getSentRequests,
+   postFriendRequest,
    acceptFriendship,
    rejectFriendship,
    removeFriendship,

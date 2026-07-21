@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { login, register } from '../services/auth.service';
 import { tokenName } from '../services/api';
 
-import useLocalStorage from '../hooks/LocalStorage';
+import useSessionStorage from '../hooks/sessionStorage';
 
 const GlobalContext = createContext();
 
@@ -18,7 +18,7 @@ const initialState = {
 
 const GlobalProvider = ({ children }) => {
    const [state, setState] = useState(initialState);
-   const { removeItem, setItem, getItem } = useLocalStorage(tokenName);
+   const { removeItem, setItem, getItem } = useSessionStorage(tokenName);
    const navigate = useNavigate();
 
    const handleLogin = async (email, password) => {

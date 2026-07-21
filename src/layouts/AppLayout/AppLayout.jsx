@@ -1,7 +1,6 @@
 import { Navigate, Outlet } from 'react-router';
 
 import Navbar from '../../components/Navbar/Navbar';
-import useLocalStorage from '../../hooks/LocalStorage';
 
 import { useGlobalContext } from '../../contexts/GlobalContext';
 import { tokenName } from '../../services/api';
@@ -9,9 +8,10 @@ import { tokenName } from '../../services/api';
 import styles from './AppLayout.module.scss';
 import { FeedProvider } from '../../contexts/FeedContext';
 import { FriendsProvider } from '../../contexts/FriendsContext';
+import useSessionStorage from '../../hooks/SessionStorage';
 
 const AppLayout = () => {
-   const { getItem } = useLocalStorage(tokenName);
+   const { getItem } = useSessionStorage(tokenName);
 
    const session = getItem() ?? {};
 
