@@ -19,8 +19,6 @@ const Feed = () => {
 
    const data = state.postsList;
 
-   const userLogged = getNameInitials(globalState.user?.name);
-
    useEffect(() => {
       getPostsList();
    }, []);
@@ -31,7 +29,7 @@ const Feed = () => {
             <div className={styles.containerWrapperMain}>
                <Card customStyle={styles.containerWrapperMainCard}>
                   <div>
-                     <Avatar label={userLogged} />
+                     <Avatar label={globalState.user?.name} />
                   </div>
                   <div>
                      <TextArea

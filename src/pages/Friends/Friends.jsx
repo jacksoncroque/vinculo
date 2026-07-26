@@ -40,7 +40,6 @@ const Friends = () => {
    }, [selectedFilter]);
 
    useEffect(() => {
-      console.log(data);
    }, [data]);
 
    return (

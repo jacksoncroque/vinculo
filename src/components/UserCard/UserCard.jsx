@@ -4,7 +4,7 @@ import Card from '../Card/Card';
 
 import styles from './UserCard.module.scss';
 import { useFriendsContext } from '../../contexts/FriendsContext';
-import { removeFriendship } from '../../services/friendships.service';
+import { useEffect } from 'react';
 
 const UserCard = ({ user, activeTab }) => {
    const {
@@ -21,25 +21,23 @@ const UserCard = ({ user, activeTab }) => {
       await sendFriendRequest(user.id);
 
       if (activeTab === 'all') {
-         getUsersList();
+         await getUsersList();
       }
 
       if (activeTab === 'suggestions') {
-         console.log(getFriendsSugestionList());
-         
-         getFriendsSugestionList();
+         await getFriendsSugestionList();
       }
    };
 
-   const handleRemoveFriendship = async (friendshipId) => {
-      await removeFriendship(friendshipId);
+   const handleRemoveFriendship = async () => {
+      await removeFriend(user.friendship.id);
 
       if (activeTab === 'all') {
-         getUsersList();
+         await getUsersList();
       }
 
       if (activeTab === 'friends') {
-         getFriendsList();
+         await getFriendsList();
       }
    };
 

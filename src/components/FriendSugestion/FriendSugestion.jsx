@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 
 import { useFeedContext } from '../../contexts/FeedContext';
 
-import Avatar from '../Avatar/Avatar';
 import ChipButton from '../ChipButton/ChipButton';
+import Avatar from '../Avatar/Avatar';
 
 import styles from './FriendSugestion.module.scss';
 

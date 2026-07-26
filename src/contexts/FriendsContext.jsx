@@ -58,17 +58,11 @@ const FriendsProvider = ({ children }) => {
       }
    };
 
-   const acceptFriendshipRequest = async () => {
+   const acceptFriendshipRequest = async (friendshipId) => {
       try {
          toggleLoading(true);
 
-         const res = await acceptFriendship();
-
-         if (res.success) {
-            setState((prev) => {
-               return { ...prev, friendsList: res.data };
-            });
-         }
+         const res = await acceptFriendship(friendshipId);
       } catch (error) {
          console.log(error);
       } finally {
@@ -76,17 +70,11 @@ const FriendsProvider = ({ children }) => {
       }
    };
 
-   const rejectFriendshipRequest = async () => {
+   const rejectFriendshipRequest = async (friendshipId) => {
       try {
          toggleLoading(true);
 
-         const res = await rejectFriendship();
-
-         if (res.success) {
-            setState((prev) => {
-               return { ...prev, friendsList: res.data };
-            });
-         }
+         const res = await rejectFriendship(friendshipId);
       } catch (error) {
          console.log(error);
       } finally {
@@ -99,12 +87,6 @@ const FriendsProvider = ({ children }) => {
          toggleLoading(true);
 
          const res = await removeFriendship(friendshipId);
-
-         if (res.success) {
-            setState((prev) => {
-               return { ...prev, friendsList: res.data };
-            });
-         }
       } catch (error) {
          console.log(error);
       } finally {
