@@ -127,7 +127,7 @@ export const api = {
       const token = getAuthToken();
 
       const response = await fetch(fetchUrl, {
-        method: 'PUT',
+        method: 'DELETE',
         headers: {
           accept: 'application/json',
           'Content-Type': 'application/json',
