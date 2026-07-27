@@ -47,6 +47,8 @@ const UserCard = ({ user, activeTab }) => {
       status = 'suggestion';
    } else if (user.friendship?.status === 'pending') {
       status = 'pending';
+   } else if (user.friendship?.status === 'rejected') {
+      status = 'rejected';
    } else {
       status = 'accepted';
    }
@@ -83,6 +85,15 @@ const UserCard = ({ user, activeTab }) => {
                      <div className={styles.containerActionsPending}>
                         <ChipButton
                            label="Solicitação enviada"
+                           hasIcon={false}
+                        />
+                     </div>
+                  );
+               case 'rejected':
+                  return (
+                     <div className={styles.containerActionsRejected}>
+                        <ChipButton
+                           label="Solicitação rejeitada"
                            hasIcon={false}
                         />
                      </div>

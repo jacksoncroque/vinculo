@@ -1,14 +1,17 @@
 import { Navigate, Outlet } from 'react-router';
 
-import Navbar from '../../components/Navbar/Navbar';
+import { FriendsProvider } from '../../contexts/FriendsContext';
+import { ProfileProvider } from '../../contexts/ProfileContext';
+import { FeedProvider } from '../../contexts/FeedContext';
 
 import { useGlobalContext } from '../../contexts/GlobalContext';
+import useSessionStorage from '../../hooks/SessionStorage';
+
+import Navbar from '../../components/Navbar/Navbar';
+
 import { tokenName } from '../../services/api';
 
 import styles from './AppLayout.module.scss';
-import { FeedProvider } from '../../contexts/FeedContext';
-import { FriendsProvider } from '../../contexts/FriendsContext';
-import useSessionStorage from '../../hooks/SessionStorage';
 
 const AppLayout = () => {
    const { getItem } = useSessionStorage(tokenName);
@@ -25,17 +28,19 @@ const AppLayout = () => {
    }
 
    return (
-      <FeedProvider>
-         <FriendsProvider>
-            <div className={styles.container}>
-               <Navbar />
+      <ProfileProvider>
+         <FeedProvider>
+            <FriendsProvider>
+               <div className={styles.container}>
+                  <Navbar />
 
-               <div className={styles.containerWrapper}>
-                  <Outlet />
+                  <div className={styles.containerWrapper}>
+                     <Outlet />
+                  </div>
                </div>
-            </div>
-         </FriendsProvider>
-      </FeedProvider>
+            </FriendsProvider>
+         </FeedProvider>
+      </ProfileProvider>
    );
 };
 
