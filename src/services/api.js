@@ -18,6 +18,8 @@ export const api = {
   get: async (endpoint) => {
     try {
       const fetchUrl = `${apiUrl}/${endpoint}`;
+      console.log(fetchUrl);
+      
 
       const token = getAuthToken();
 

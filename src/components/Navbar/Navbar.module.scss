@@ -1,185 +1,193 @@
 @use '_mixins' as *;
 
 .container {
-  position: fixed;
-  border-bottom: 0.1px solid #76767634;
-  width: 100%;
-  z-index: 5;
-  top: 0;
-  left: 0;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  display: flex;
+   position: fixed;
+   border-bottom: 0.1px solid #76767634;
+   width: 100%;
+   z-index: 5;
+   top: 0;
+   left: 0;
+   background: rgba(255, 255, 255, 0.75);
+   backdrop-filter: blur(12px);
+   -webkit-backdrop-filter: blur(12px);
+   display: flex;
 
-  & > button {
-    display: none;
+   & > button {
+      display: none;
 
-    @media (max-width: $tablet) {
-      display: block;
-    }
-  }
+      @media (max-width: $tablet) {
+         display: block;
+      }
+   }
 
-  &Wrapper {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: var(--navbar-height);
-    max-width: var(--max-container-width);
-    margin: 0 auto;
-    padding: 0 1rem;
-    gap: 2rem;
-
-    &Search {
+   &Wrapper {
       display: flex;
-      position: relative;
       align-items: center;
-      max-width: 24rem;
       width: 100%;
-
-      @media (max-width: $tablet) {
-        display: none;
-      }
-
-      & > svg {
-        position: absolute;
-        top: 11px;
-        left: 9px;
-        color: var(--color-text-muted);
-      }
-
-      &Input {
-        width: 100%;
-        align-items: center;
-
-        & > input {
-          padding: 0 2rem;
-          width: 100%;
-        }
-      }
-    }
-
-    &Sections {
-      display: flex;
-      margin-left: auto;
-      align-items: center;
-      gap: 0.5rem;
-
-      & > a {
-        font-size: 0.8rem;
-        font-weight: 600;
-        padding: 0.4rem 0.75rem;
-        color: #000000b6;
-        border-radius: var(--radius-sm);
-        transition:
-          color 0.2s ease,
-          background-color 0.2s ease,
-          transform 0.5s ease;
-      }
-
-      & > a:hover {
-        background-color: var(--color-primary-soft);
-      }
-
-      & > a.containerWrapperSectionsActive {
-        background-color: var(--color-primary-soft);
-        color: #507ef1;
-      }
-
-      @media (max-width: $tablet) {
-        display: none;
-      }
-    }
-  }
-
-  &Backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 998;
-  }
-
-  &Mobile {
-    position: fixed;
-    width: 100%;
-    height: 25rem;
-    z-index: 999;
-    right: 0;
-    top: var(--navbar-height);
-    background-color: #fff;
-    padding: 1rem;
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-
-    &Wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+      height: var(--navbar-height);
+      max-width: var(--max-container-width);
+      margin: 0 auto;
+      padding: 0 1rem;
+      gap: 2rem;
 
       &Search {
-        display: flex;
-        position: relative;
+         display: flex;
+         position: relative;
+         align-items: center;
+         max-width: 24rem;
+         width: 100%;
 
-        & > svg {
-          position: absolute;
-          top: 11px;
-          left: 9px;
-          color: var(--color-text-muted);
-        }
+         @media (max-width: $tablet) {
+            display: none;
+         }
 
-        &Input {
-          width: 100%;
-          align-items: center;
+         & > svg {
+            position: absolute;
+            top: 11px;
+            left: 9px;
+            color: var(--color-text-muted);
+         }
 
-          & > input {
-            padding: 0 2rem;
+         &Input {
             width: 100%;
-          }
-        }
+            align-items: center;
+
+            & > input {
+               padding: 0 2rem;
+               width: 100%;
+            }
+         }
       }
 
       &Sections {
-        width: 100%;
+         display: flex;
+         margin-left: auto;
+         align-items: center;
+         gap: 0.5rem;
 
-        & > ul {
-          display: grid;
-          gap: 0.5rem;
-          grid-template-columns: 2fr 2fr;
-          width: 100%;
-          padding: 0;
-          margin: 0 0 0.5rem 0;
-
-          & > li {
-            background-color: var(--color-primary-soft);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            padding: 0.55rem 1rem;
-            font-size: 0.875rem;
+         & > button {
+            font-size: 0.8rem;
             font-weight: 600;
-            line-height: 1;
-            color: var(--color-text);
+            padding: 0.4rem 0.75rem;
+            color: #000000b6;
+            border-radius: var(--radius-sm);
+         }
 
-            & > :last-of-type {
-              width: 100%;
-            }
-          }
-        }
+         & > a {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.4rem 0.75rem;
+            color: #000000b6;
+            border-radius: var(--radius-sm);
+            transition:
+               color 0.2s ease,
+               background-color 0.2s ease,
+               transform 0.5s ease;
+         }
 
-        & > button {
-          width: 100%;
-          background-color: var(--color-primary-soft);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-sm);
-          padding: 0.55rem 1rem;
-          font-size: 0.875rem;
-          font-weight: 600;
-          line-height: 1;
-          color: var(--color-text);
-        }
+         & > a:hover {
+            background-color: var(--color-primary-soft);
+         }
+
+         & > a.containerWrapperSectionsActive {
+            background-color: var(--color-primary-soft);
+            color: #507ef1;
+         }
+
+         @media (max-width: $tablet) {
+            display: none;
+         }
       }
-    }
-  }
+   }
 
-  & > button {
-    margin: 0 1rem 0 0;
-  }
+   &Backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 998;
+   }
+
+   &Mobile {
+      position: fixed;
+      width: 100%;
+      height: 25rem;
+      z-index: 999;
+      right: 0;
+      top: var(--navbar-height);
+      background-color: #fff;
+      padding: 1rem;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+
+      &Wrapper {
+         display: flex;
+         flex-direction: column;
+         gap: 0.5rem;
+
+         &Search {
+            display: flex;
+            position: relative;
+
+            & > svg {
+               position: absolute;
+               top: 11px;
+               left: 9px;
+               color: var(--color-text-muted);
+            }
+
+            &Input {
+               width: 100%;
+               align-items: center;
+
+               & > input {
+                  padding: 0 2rem;
+                  width: 100%;
+               }
+            }
+         }
+
+         &Sections {
+            width: 100%;
+
+            & > ul {
+               display: grid;
+               gap: 0.5rem;
+               grid-template-columns: 2fr 2fr;
+               width: 100%;
+               padding: 0;
+               margin: 0 0 0.5rem 0;
+
+               & > li {
+                  background-color: var(--color-primary-soft);
+                  border: 1px solid var(--color-border);
+                  border-radius: var(--radius-sm);
+                  padding: 0.55rem 1rem;
+                  font-size: 0.875rem;
+                  font-weight: 600;
+                  line-height: 1;
+                  color: var(--color-text);
+
+                  & > :last-of-type {
+                     width: 100%;
+                  }
+               }
+            }
+
+            & > button {
+               width: 100%;
+               background-color: var(--color-primary-soft);
+               border: 1px solid var(--color-border);
+               border-radius: var(--radius-sm);
+               padding: 0.55rem 1rem;
+               font-size: 0.875rem;
+               font-weight: 600;
+               line-height: 1;
+               color: var(--color-text);
+            }
+         }
+      }
+   }
+
+   & > button {
+      margin: 0 1rem 0 0;
+   }
 }
