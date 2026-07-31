@@ -1,10 +1,12 @@
 import { api } from './api';
 
 const getUsers = async (search = '') => {
-  const res = await api.get(`users?${search}`);
-  return res;
+   const res = await api.get(`users?${search}`);
+   return res;
 };
 
-const updateMe = (data) => {};
+const updateMe = async (data) => {
+   const res = await api.put(`users/me`, data);
+};
 
 export { getUsers, updateMe };

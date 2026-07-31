@@ -65,7 +65,12 @@ const Navbar = () => {
                      Perfil
                   </NavLink>
                   <button onClick={handleLogout}>Sair</button>
-                  <Avatar label={state.user?.name} />
+                  <NavLink to="/profile">
+                     <Avatar
+                        label={state.user?.name}
+                        customStyle={styles.containerWrapperSectionsAvatar}
+                     />
+                  </NavLink>
                </div>
             </div>
 

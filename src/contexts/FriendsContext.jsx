@@ -32,6 +32,8 @@ const FriendsProvider = ({ children }) => {
             setState((prev) => {
                return { ...prev, friendsList: res.data };
             });
+         } else {
+            showErrorMessage(res.error);
          }
       } catch (error) {
          console.log(error);
@@ -50,6 +52,8 @@ const FriendsProvider = ({ children }) => {
             setState((prev) => {
                return { ...prev, friendsList: res.data };
             });
+         } else {
+            showErrorMessage(res.error);
          }
       } catch (error) {
          console.log(error);
@@ -63,6 +67,10 @@ const FriendsProvider = ({ children }) => {
          toggleLoading(true);
 
          const res = await acceptFriendship(friendshipId);
+
+         if (!res.succes) {
+            showErrorMessage(res.error);
+         }
       } catch (error) {
          console.log(error);
       } finally {
@@ -75,6 +83,10 @@ const FriendsProvider = ({ children }) => {
          toggleLoading(true);
 
          const res = await rejectFriendship(friendshipId);
+
+         if (!res.success) {
+            showErrorMessage(res.error);
+         }
       } catch (error) {
          console.log(error);
       } finally {
@@ -87,6 +99,8 @@ const FriendsProvider = ({ children }) => {
          toggleLoading(true);
 
          const res = await removeFriendship(friendshipId);
+
+         console.log(res);
       } catch (error) {
          console.log(error);
       } finally {
@@ -104,6 +118,8 @@ const FriendsProvider = ({ children }) => {
             setState((prev) => {
                return { ...prev, friendsList: res.data };
             });
+         } else {
+            showErrorMessage(res.error);
          }
       } catch (error) {
          console.log(error);
@@ -116,7 +132,10 @@ const FriendsProvider = ({ children }) => {
          toggleLoading(true);
 
          const res = await postFriendRequest(userId);
-         console.log(res);
+
+         if (!res.success) {
+            showErrorMessage(res.error);
+         }
       } catch (error) {
          console.log(error);
       } finally {
@@ -143,6 +162,8 @@ const FriendsProvider = ({ children }) => {
                      }),
                };
             });
+         } else {
+            showErrorMessage(res.error);
          }
       } catch (error) {
          console.log(error);
