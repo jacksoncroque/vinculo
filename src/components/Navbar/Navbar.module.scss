@@ -94,6 +94,10 @@
             color: #507ef1;
          }
 
+         &Avatar {
+            cursor: pointer;
+         }
+
          @media (max-width: $tablet) {
             display: none;
          }

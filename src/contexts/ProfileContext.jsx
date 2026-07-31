@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from 'react';
 import { useGlobalContext } from './GlobalContext';
 import { getMyProfile } from '../services/profile.service';
 import { getUserPosts } from '../services/posts.service';
+import { updateMe } from '../services/users.service';
 
 const ProfileContext = createContext();
 
@@ -18,6 +19,23 @@ const initialState = {
 const ProfileProvider = ({ children }) => {
    const [state, setState] = useState(initialState);
    const { toggleLoading, showErrorMessage, showSuccesMessage } = useGlobalContext();
+
+   const handleNameChange = (event) => {
+      const user = event.target.value;
+
+      console.log(user);
+
+      setState((prev) => {
+         return { ...prev, user: user };
+      });
+   };
+   const handleEmailChange = (event) => {
+      const email = event.target.value;
+
+      setState((prev) => {
+         return { ...prev, email: email };
+      });
+   };
 
    const myProfile = async () => {
       try {
@@ -37,6 +55,8 @@ const ProfileProvider = ({ children }) => {
                   commentsCount: res.data.stats.commentsCount,
                };
             });
+         } else {
+            showErrorMessage(res.error);
          }
       } catch (error) {
          console.log(error);
@@ -54,6 +74,24 @@ const ProfileProvider = ({ children }) => {
             setState((prev) => {
                return { ...prev, postsList: res.data };
             });
+         } else {
+            showErrorMessage(res.error);
+         }
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
+      }
+   };
+
+   const updateMyProfile = async () => {
+      try {
+         toggleLoading(true);
+
+         const res = await updateMe({ name: state.user, email: state.email });
+
+         if (!res.succes) {
+            showErrorMessage(res.error);
          }
       } catch (error) {
          console.log(error);
@@ -66,6 +104,9 @@ const ProfileProvider = ({ children }) => {
       state,
       myProfile,
       getMyPosts,
+      updateMyProfile,
+      handleNameChange,
+      handleEmailChange,
    };
 
    return <ProfileContext.Provider value={values}>{children}</ProfileContext.Provider>;

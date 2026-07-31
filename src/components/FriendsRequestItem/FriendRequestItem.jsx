@@ -30,9 +30,7 @@ const FriendRequestItem = ({ label, name, email, friendsInComunm = 'Nenhum amigo
       await receivedRequests();
    };
 
-   useEffect(() => {
-      console.log(data);
-   }, [data]);
+   useEffect(() => {}, [data]);
 
    return (
       <Card>

@@ -15,8 +15,6 @@ const createPost = async (content) => {
 };
 
 const getUserPosts = async (userId) => {
-  console.log(`posts/user/${userId}`);
-  
    const res = await api.get(`posts/user/${userId}`);
 
    return res;
@@ -34,6 +32,4 @@ const createComment = async (postId, content) => {
    return res;
 };
 
-const deleteComment = (commentId) => {};
-
-export { getFeed, createPost, getUserPosts, updatePost, deletePost, createComment, deleteComment };
+export { getFeed, createPost, getUserPosts, updatePost, deletePost, createComment };
