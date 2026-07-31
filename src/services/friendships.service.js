@@ -1,29 +1,46 @@
 import { api } from './api';
 
-const friendRequest = async (userId) => {
-  const res = await api.post(`friendships/request/${userId}`);
+const postFriendRequest = async (userId) => {
+   const res = await api.post(`friendships/request/${userId}`);
 
-  return res;
+   return res;
 };
 
-const getReceivedRequests = () => {};
+const getReceivedRequests = async () => {
+   const res = await api.get('friendships/requests');
 
-const getSentRequests = () => {};
+   return res;
+};
 
-const acceptFriendship = (friendshipId) => {};
+const acceptFriendship = async (friendshipId) => {
+   const res = await api.post(`friendships/${friendshipId}/accept`);
 
-const rejectFriendship = (friendshipId) => {};
+   return res;
+};
 
-const removeFriendship = (friendshipId) => {};
+const rejectFriendship = async (friendshipId) => {
+   const res = await api.post(`friendships/${friendshipId}/reject`);
 
-const getFriends = () => {};
+   return res;
+};
+
+const removeFriendship = async (friendshipId) => {
+   const res = await api.delete(`friendships/${friendshipId}`);
+
+   return res;
+};
+
+const getFriends = async () => {
+   const res = await api.get('friendships/friends');
+
+   return res;
+};
 
 export {
-  friendRequest,
-  getReceivedRequests,
-  getSentRequests,
-  acceptFriendship,
-  rejectFriendship,
-  removeFriendship,
-  getFriends,
+   getFriends,
+   postFriendRequest,
+   acceptFriendship,
+   rejectFriendship,
+   removeFriendship,
+   getReceivedRequests,
 };

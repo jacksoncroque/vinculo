@@ -3,132 +3,131 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { createComment, createPost, getFeed } from '../services/posts.service';
 import { useGlobalContext } from './GlobalContext';
 
-import { friendRequest } from '../services/friendships.service';
+import { postFriendRequest } from '../services/friendships.service';
 import { getUsers } from '../services/users.service';
 
 const FeedContext = createContext();
 
 const initialState = {
-  postsList: [],
-  friendsSugestions: [],
-  inputValue: '',
+   postsList: [],
+   friendsSugestions: [],
+   inputValue: '',
 };
 
 const FeedProvider = ({ children }) => {
-  const [state, setState] = useState(initialState);
-  const { toggleLoading, showErrorMessage, showSuccesMessage } = useGlobalContext();
+   const [state, setState] = useState(initialState);
+   const { toggleLoading, showErrorMessage, showSuccesMessage } = useGlobalContext();
 
-  const handleInputChange = (e) => {
-    setState((prev) => {
-      return { ...prev, inputValue: e.target.value };
-    });
-  };
+   const handleInputChange = (e) => {
+      setState((prev) => {
+         return { ...prev, inputValue: e.target.value };
+      });
+   };
 
-  const getPostsList = async () => {
-    try {
-      toggleLoading(true);
+   const getPostsList = async () => {
+      try {
+         toggleLoading(true);
 
-      const res = await getFeed();
+         const res = await getFeed();
 
-      if (res.success) {
-        setState((prev) => {
-          return { ...prev, postsList: res.data };
-        });
+         if (res.success) {
+            setState((prev) => {
+               return { ...prev, postsList: res.data };
+            });
+         }
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
       }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      toggleLoading(false);
-    }
-  };
+   };
 
-  const getFriendsSugestionList = async () => {
-    try {
-      toggleLoading(true);
+   const getFriendsSugestionList = async () => {
+      try {
+         toggleLoading(true);
 
-      const res = await getUsers();
+         const res = await getUsers();
 
-      if (res.success) {
-        setState((prev) => {
-          return { ...prev, friendsSugestions: res.data };
-        });
+         if (res.success) {
+            setState((prev) => {
+               return { ...prev, friendsSugestions: res.data };
+            });
+         }
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
       }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      toggleLoading(false);
-    }
-  };
+   };
 
-  const postPost = async () => {
-    try {
-      toggleLoading(true);
+   const postPost = async () => {
+      try {
+         toggleLoading(true);
 
-      const res = await createPost(state.inputValue);
+         const res = await createPost(state.inputValue);
 
-      if (res.success) {
-        setState((prev) => {
-          return { ...prev, inputValue: '' };
-        });
-        await getPostsList();
-      } else {
-        showErrorMessage('O conteúdo do post é obrigatório.');
+         if (res.success) {
+            setState((prev) => {
+               return { ...prev, inputValue: '' };
+            });
+            await getPostsList();
+         } else {
+            showErrorMessage('O conteúdo do post é obrigatório.');
+         }
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
       }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      toggleLoading(false);
-    }
-  };
+   };
 
-  const createNewComment = async (postId, comment) => {
-    try {
-      toggleLoading(true);
+   const createNewComment = async (postId, comment) => {
+      try {
+         toggleLoading(true);
 
-      const res = await createComment(postId, comment);
+         const res = await createComment(postId, comment);
 
-      await getPostsList();
-    } catch (error) {
-      console.log(error);
-    } finally {
-      toggleLoading(false);
-    }
-  };
-
-  const sendFriendRequest = async (userId) => {
-    try {
-      toggleLoading(true);
-
-      const res = await friendRequest(userId);
-
-      if (res.success) {
-        showSuccesMessage('Pedido de amizade enviado.');
-      } else {
-        showErrorMessage('Falha ao enviar pedido de amizade.');
+         await getPostsList();
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
       }
-      
-    } catch (error) {
-      console.log(error);
-    } finally {
-      toggleLoading(false);
-    }
-  };
+   };
 
-  const values = {
-    state,
-    getFriendsSugestionList,
-    sendFriendRequest,
-    handleInputChange,
-    createNewComment,
-    getPostsList,
-    postPost,
-  };
+   const sendFriendRequest = async (userId) => {
+      try {
+         toggleLoading(true);
 
-  return <FeedContext.Provider value={values}>{children}</FeedContext.Provider>;
+         const res = await postFriendRequest(userId);
+
+         if (res.success) {
+            showSuccesMessage('Pedido de amizade enviado.');
+         } else {
+            showErrorMessage('Falha ao enviar pedido de amizade.');
+         }
+      } catch (error) {
+         console.log(error);
+      } finally {
+         toggleLoading(false);
+      }
+   };
+
+   const values = {
+      state,
+      getFriendsSugestionList,
+      sendFriendRequest,
+      handleInputChange,
+      createNewComment,
+      getPostsList,
+      postPost,
+   };
+
+   return <FeedContext.Provider value={values}>{children}</FeedContext.Provider>;
 };
 
 const useFeedContext = () => {
-  return useContext(FeedContext);
+   return useContext(FeedContext);
 };
 
 export { FeedProvider, useFeedContext };

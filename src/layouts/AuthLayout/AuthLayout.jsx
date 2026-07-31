@@ -4,12 +4,12 @@ import { useGlobalContext } from '../../contexts/GlobalContext';
 import { tokenName } from '../../services/api';
 
 import Logo from '../../components/Logo/Logo';
-import useLocalStorage from '../../hooks/LocalStorage';
 
 import styles from './AuthLayout.module.scss';
+import useSessionStorage from '../../hooks/SessionStorage';
 
 const AuthLayout = () => {
-  const { getItem } = useLocalStorage(tokenName);
+  const { getItem } = useSessionStorage(tokenName);
 
   const session = getItem() ?? {};
 
