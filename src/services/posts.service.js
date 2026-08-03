@@ -20,10 +20,6 @@ const getUserPosts = async (userId) => {
    return res;
 };
 
-const updatePost = (postId, content) => {};
-
-const deletePost = (postId) => {};
-
 const createComment = async (postId, content) => {
    const res = await api.post(`posts/${postId}/comments`, {
       content,
@@ -32,4 +28,4 @@ const createComment = async (postId, content) => {
    return res;
 };
 
-export { getFeed, createPost, getUserPosts, updatePost, deletePost, createComment };
+export { getFeed, createPost, getUserPosts, createComment };

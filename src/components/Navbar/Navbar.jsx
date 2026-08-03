@@ -3,17 +3,22 @@ import { Menu, Search } from 'lucide-react';
 import { NavLink } from 'react-router';
 import cn from 'classnames';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import Card from '../Card/Card';
 import Logo from '../Logo/Logo';
 import Input from '../Input/Input';
 import Avatar from '../Avatar/Avatar';
 
 import styles from './Navbar.module.scss';
 import { useGlobalContext } from '../../contexts/GlobalContext';
+import FriendSugestion from '../FriendSugestion/FriendSugestion';
+import ChipButton from '../ChipButton/ChipButton';
+import { useFeedContext } from '../../contexts/FeedContext';
 
 const Navbar = () => {
-   const { state, handleLogout } = useGlobalContext();
+   const { state, handleLogout, handleChangeInput, handleSearchUser } = useGlobalContext();
+   const { sendFriendRequest, getFriendsSugestionList } = useFeedContext();
 
    const [open, setOpen] = useState(false);
 
@@ -21,6 +26,20 @@ const Navbar = () => {
       cn(styles.containerWrapperSectionsLink, {
          [styles.containerWrapperSectionsActive]: isActive,
       });
+
+   const handleSendFriendRequest = async (userId) => {
+      await sendFriendRequest(userId);
+
+      handleSearchUser(state.inputValue);
+
+      await getFriendsSugestionList();
+   };
+
+   const data = state.usersList;
+
+   console.log(data);
+
+   useEffect(() => {}, [data]);
 
    return (
       <>
@@ -30,14 +49,61 @@ const Navbar = () => {
                   <Logo />
                </div>
                <div className={styles.containerWrapperSearch}>
-                  <Search size={20} />
+                  <Search
+                     size={20}
+                     className={styles.containerWrapperSearchIcon}
+                  />
+
                   <Input
                      type="text"
                      id="search"
                      name="search"
                      placeholder="Buscar usuários..."
+                     value={state.inputValue}
+                     onChange={handleChangeInput}
                      customStyles={styles.containerWrapperSearchInput}
                   />
+
+                  <AnimatePresence>
+                     {state.usersList.length > 0 && (
+                        <motion.div
+                           className={styles.containerWrapperSearchDropdown}
+                           initial={{ opacity: 0, y: -8 }}
+                           animate={{ opacity: 1, y: 0 }}
+                           exit={{ opacity: 0, y: -8 }}
+                           transition={{ duration: 0.2 }}
+                        >
+                           <Card customStyle={styles.containerWrapperSearchResults}>
+                              {data.map((user) => {
+                                 let label = 'Adicionar';
+                                 let disabled = false;
+
+                                 if (user.friendship?.status === 'pending') {
+                                    label = 'Solicitado';
+                                    disabled = true;
+                                 }
+
+                                 return (
+                                    <div
+                                       key={user.id}
+                                       className={styles.containerWrapperSearchResultsUser}
+                                    >
+                                       <Avatar label={user.name} />
+                                       <h3>{user.name}</h3>
+
+                                       <ChipButton
+                                          label={label}
+                                          onClick={() => {
+                                             handleSendFriendRequest(user.id);
+                                          }}
+                                       />
+                                    </div>
+                                 );
+                              })}
+                           </Card>
+                        </motion.div>
+                     )}
+                  </AnimatePresence>
                </div>
                <div className={styles.containerWrapperSections}>
                   <NavLink
