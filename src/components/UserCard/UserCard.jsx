@@ -84,7 +84,7 @@ const UserCard = ({ user, activeTab }) => {
                   return (
                      <div className={styles.containerActionsPending}>
                         <ChipButton
-                           label="Solicitação enviada"
+                           label="Solicitação pendente"
                            hasIcon={false}
                         />
                      </div>

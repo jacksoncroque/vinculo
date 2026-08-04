@@ -22,6 +22,7 @@ const Friends = () => {
       removeFriend,
       getUsersList,
    } = useFriendsContext();
+
    const [selectedFilter, setSelectedFilter] = useState('all');
 
    const data = state.friendsList;
@@ -39,8 +40,7 @@ const Friends = () => {
       }
    }, [selectedFilter]);
 
-   useEffect(() => {
-   }, [data]);
+   useEffect(() => {}, [data]);
 
    return (
       <div className={styles.container}>
@@ -72,9 +72,6 @@ const Friends = () => {
                            selectedFilter === 'suggestions',
                      })}
                   />
-               </div>
-               <div className={styles.containerWrapperHeaderInput}>
-                  <Input placeholder="Buscar por nome..." />
                </div>
             </Card>
             <div className={styles.containerWrapperGrid}>
