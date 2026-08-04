@@ -3,7 +3,7 @@ import { Menu, Search } from 'lucide-react';
 import { NavLink } from 'react-router';
 import cn from 'classnames';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Card from '../Card/Card';
 import Logo from '../Logo/Logo';
@@ -21,6 +21,23 @@ const Navbar = () => {
    const { sendFriendRequest, getFriendsSugestionList } = useFeedContext();
 
    const [open, setOpen] = useState(false);
+   const [searchOpen, setSearchOpen] = useState(false);
+
+   const searchRef = useRef(null);
+
+   useEffect(() => {
+      const handleClickOutside = (event) => {
+         if (searchRef.current && !searchRef.current.contains(event.target)) {
+            setSearchOpen(false);
+         }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+
+      return () => {
+         document.removeEventListener('mousedown', handleClickOutside);
+      };
+   }, []);
 
    const getNavLinkClass = ({ isActive }) =>
       cn(styles.containerWrapperSectionsLink, {
@@ -37,10 +54,6 @@ const Navbar = () => {
 
    const data = state.usersList;
 
-   console.log(data);
-
-   useEffect(() => {}, [data]);
-
    return (
       <>
          <div className={styles.container}>
@@ -48,7 +61,10 @@ const Navbar = () => {
                <div className={styles.containerWrapperLogo}>
                   <Logo />
                </div>
-               <div className={styles.containerWrapperSearch}>
+               <div
+                  ref={searchRef}
+                  className={styles.containerWrapperSearch}
+               >
                   <Search
                      size={20}
                      className={styles.containerWrapperSearchIcon}
@@ -60,12 +76,16 @@ const Navbar = () => {
                      name="search"
                      placeholder="Buscar usuários..."
                      value={state.inputValue}
-                     onChange={handleChangeInput}
+                     onChange={(event) => {
+                        handleChangeInput(event);
+                        setSearchOpen(true);
+                     }}
+                     onFocus={() => setSearchOpen(true)}
                      customStyles={styles.containerWrapperSearchInput}
                   />
 
                   <AnimatePresence>
-                     {state.usersList.length > 0 && (
+                     {searchOpen && state.usersList.length > 0 && (
                         <motion.div
                            className={styles.containerWrapperSearchDropdown}
                            initial={{ opacity: 0, y: -8 }}
@@ -75,13 +95,7 @@ const Navbar = () => {
                         >
                            <Card customStyle={styles.containerWrapperSearchResults}>
                               {data.map((user) => {
-                                 let label = 'Adicionar';
-                                 let disabled = false;
-
-                                 if (user.friendship?.status === 'pending') {
-                                    label = 'Solicitado';
-                                    disabled = true;
-                                 }
+                                 const isPending = user.friendship?.status === 'pending';
 
                                  return (
                                     <div
@@ -89,13 +103,13 @@ const Navbar = () => {
                                        className={styles.containerWrapperSearchResultsUser}
                                     >
                                        <Avatar label={user.name} />
+
                                        <h3>{user.name}</h3>
 
                                        <ChipButton
-                                          label={label}
-                                          onClick={() => {
-                                             handleSendFriendRequest(user.id);
-                                          }}
+                                          label={isPending ? 'Solicitado' : 'Adicionar'}
+                                          disabled={isPending}
+                                          onClick={() => handleSendFriendRequest(user.id)}
                                        />
                                     </div>
                                  );
