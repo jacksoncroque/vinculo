@@ -96,6 +96,11 @@ const Navbar = () => {
                            <Card customStyle={styles.containerWrapperSearchResults}>
                               {data.map((user) => {
                                  const isPending = user.friendship?.status === 'pending';
+                                 const friend = user.friendship?.status === 'accepted';
+                                 let label = 'Adicionar';
+
+                                 if (user.friendship?.status === 'pending') label = 'Solicitado';
+                                 if (user.friendship?.status === 'accepted') label = 'Amigos';
 
                                  return (
                                     <div
@@ -107,7 +112,7 @@ const Navbar = () => {
                                        <h3>{user.name}</h3>
 
                                        <ChipButton
-                                          label={isPending ? 'Solicitado' : 'Adicionar'}
+                                          label={label}
                                           disabled={isPending}
                                           onClick={() => handleSendFriendRequest(user.id)}
                                        />
