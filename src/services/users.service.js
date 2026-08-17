@@ -7,6 +7,7 @@ const getUsers = async (search = '') => {
 
 const updateMe = async (data) => {
    const res = await api.put(`users/me`, data);
+   return res;
 };
 
 export { getUsers, updateMe };

@@ -18,12 +18,10 @@ const initialState = {
 
 const ProfileProvider = ({ children }) => {
    const [state, setState] = useState(initialState);
-   const { toggleLoading, showErrorMessage, showSuccesMessage } = useGlobalContext();
+   const { toggleLoading, showErrorMessage, showSucessMessage } = useGlobalContext();
 
    const handleNameChange = (event) => {
       const user = event.target.value;
-
-      console.log(user);
 
       setState((prev) => {
          return { ...prev, user: user };
@@ -90,7 +88,13 @@ const ProfileProvider = ({ children }) => {
 
          const res = await updateMe({ name: state.user, email: state.email });
 
-         if (!res.succes) {
+         console.log(res);
+         
+         if (res.success) {
+            console.log('oi');
+
+            showSucessMessage('Alterações salvas.');
+         } else {
             showErrorMessage(res.error);
          }
       } catch (error) {
