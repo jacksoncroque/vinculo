@@ -102,7 +102,7 @@ export const api = {
             },
          });
 
-         const { success, data, error } = await response.JSON();
+         const { success, data, error } = await response.json();
 
          return {
             success: success,
@@ -137,7 +137,7 @@ export const api = {
             },
          });
 
-         const { success, data, error } = await response.JSON();
+         const { success, data, error } = await response.json();
 
          return {
             success: success,
@@ -146,6 +146,8 @@ export const api = {
             details: error?.details ?? [],
          };
       } catch (error) {
+         console.log(error);
+         
          return {
             success: false,
             data: null,

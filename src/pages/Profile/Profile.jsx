@@ -18,7 +18,7 @@ const Profile = () => {
 
    const [loaded, setLoaded] = useState(false);
    const [isEditing, setIsEditing] = useState(false);
-   
+
    const data = state.postsList;
 
    const handleOpenEdit = () => {
@@ -41,9 +41,7 @@ const Profile = () => {
       myProfile();
    }, []);
 
-   useEffect(() => {
-      console.log(state);
-   }, [state]);
+   useEffect(() => {}, [state]);
 
    useEffect(() => {
       if (state.id && !loaded) {

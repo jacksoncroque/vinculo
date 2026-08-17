@@ -21,7 +21,7 @@ const PostCard = ({ post }) => {
 
                <div className={styles.containerHeaderAuthor}>
                   <h4>{post.author.name}</h4>
-                  <span>{moment(post.createdAt).fromNow()}</span>
+                  <span>{moment(post.createdAt).subtract(3, 'hours').fromNow()}</span>
                </div>
             </div>
          </div>

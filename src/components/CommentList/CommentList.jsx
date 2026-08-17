@@ -13,7 +13,7 @@ const CommentList = ({ comment }) => {
          <Card customStyle={styles.containerComment}>
             <div className={styles.containerCommentAuthor}>
                <h5>{comment.author.name}</h5>
-               <span>{moment(comment.createdAt).fromNow()}</span>
+               <span>{moment(comment.createdAt).subtract(3, 'hours').fromNow()}</span>
             </div>
             <div className={styles.containerCommentContent}>
                <p>{comment.content}</p>
