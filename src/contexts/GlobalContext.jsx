@@ -191,11 +191,9 @@ const GlobalProvider = ({ children }) => {
    }, [state.inputValue, debouncedSearch]);
 
    useEffect(() => {
-      console.log(state.usersList);
    }, [state.usersList]);
 
    useEffect(() => {
-      console.log(state.inputValue);
    }, [state.inputValue]);
 
    const values = {
@@ -228,7 +226,7 @@ const GlobalProvider = ({ children }) => {
          {children}{' '}
          <ToastContainer
             position="top-center"
-            autoClose={10000}
+            autoClose={1000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick={true}

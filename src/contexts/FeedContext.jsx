@@ -16,7 +16,7 @@ const initialState = {
 
 const FeedProvider = ({ children }) => {
    const [state, setState] = useState(initialState);
-   const { toggleLoading, showErrorMessage, showSuccesMessage } = useGlobalContext();
+   const { toggleLoading, showErrorMessage, showSucessMessage } = useGlobalContext();
 
    const handleInputChange = (e) => {
       setState((prev) => {
@@ -70,6 +70,9 @@ const FeedProvider = ({ children }) => {
             setState((prev) => {
                return { ...prev, inputValue: '' };
             });
+
+            showSucessMessage('Post criado!');
+
             await getPostsList();
          } else {
             showErrorMessage('O conteúdo do post é obrigatório.');
@@ -87,6 +90,11 @@ const FeedProvider = ({ children }) => {
 
          const res = await createComment(postId, comment);
 
+         if (res.success) {
+            showSucessMessage('Comentário enviado!');
+         } else {
+            showErrorMessage('O conteúdo do comentário é onrigatório!');
+         }
          await getPostsList();
       } catch (error) {
          console.log(error);
@@ -102,7 +110,7 @@ const FeedProvider = ({ children }) => {
          const res = await postFriendRequest(userId);
 
          if (res.success) {
-            showSuccesMessage('Pedido de amizade enviado.');
+            showSucessMessage('Pedido de amizade enviado.');
          } else {
             showErrorMessage('Falha ao enviar pedido de amizade.');
          }

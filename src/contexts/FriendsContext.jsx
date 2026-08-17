@@ -20,7 +20,7 @@ const initialState = {
 
 const FriendsProvider = ({ children }) => {
    const [state, setState] = useState(initialState);
-   const { toggleLoading, showErrorMessage, showSuccesMessage } = useGlobalContext();
+   const { toggleLoading, showErrorMessage, showSucessMessage } = useGlobalContext();
 
    const getFriendsList = async () => {
       try {
@@ -68,7 +68,11 @@ const FriendsProvider = ({ children }) => {
 
          const res = await acceptFriendship(friendshipId);
 
-         if (!res.succes) {
+         if (res.success) {
+            console.log('cheg');
+
+            showSucessMessage('Pedido de amizade aceito.');
+         } else {
             showErrorMessage(res.error);
          }
       } catch (error) {
@@ -100,7 +104,11 @@ const FriendsProvider = ({ children }) => {
 
          const res = await removeFriendship(friendshipId);
 
-         console.log(res);
+         if (res.success) {
+            showSucessMessage('Amizade removida.');
+         } else {
+            showErrorMessage(res.error);
+         }
       } catch (error) {
          console.log(error);
       } finally {
@@ -133,7 +141,11 @@ const FriendsProvider = ({ children }) => {
 
          const res = await postFriendRequest(userId);
 
-         if (!res.success) {
+         if (res.success) {
+            console.log('fun');
+
+            showSucessMessage('Pedido de amizade enviado!');
+         } else {
             showErrorMessage(res.error);
          }
       } catch (error) {
