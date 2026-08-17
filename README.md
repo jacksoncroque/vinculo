@@ -1,16 +1,97 @@
-# React + Vite
+# Vínculo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma rede social desenvolvida com React, criada para explorar na prática conceitos de desenvolvimento Front-End, componentização, gerenciamento de estado, navegação entre páginas e construção de interfaces responsivas.
 
-Currently, two official plugins are available:
+O **Vínculo** permite que usuários criem uma conta, acessem um feed de publicações, interajam com outros usuários e gerenciem suas conexões dentro da aplicação.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> Projeto desenvolvido como parte do meu processo de aprendizado e evolução como desenvolvedor Front-End.
 
-## React Compiler
+## Preview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+![Vínculo](./src/assets/preview.png)
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* Cadastro e login de usuários
+* Feed de publicações
+* Visualização de perfil
+* Sistema de amizades
+* Solicitações de amizade
+* Listagem de amigos
+* Comentários em publicações
+* Exibição de datas e horários localizados
+* Feedback visual através de notificações
+* Navegação entre páginas
+* Interface responsiva
+* Animações e transições de interface
+
+## Tecnologias
+
+### Front-End
+
+* **React**
+* **JavaScript**
+* **Vite**
+* **React Router**
+* **Sass / SCSS**
+* **Framer Motion**
+
+## Estrutura do projeto
+
+A aplicação foi organizada buscando separar responsabilidades entre componentes, páginas, lógica compartilhada e serviços.
+
+```text
+src/
+├── components/     # Componentes reutilizáveis
+├── contexts/       # Contextos e estados compartilhados
+├── hooks/          # Hooks personalizados
+├── layouts/        # Estruturas de layout da aplicação
+├── pages/          # Páginas e telas
+├── services/       # Comunicação e serviços da aplicação
+├── styles/         # Estilos globais
+├── utils/          # Funções utilitárias
+├── App.jsx         # Configuração das rotas
+└── main.jsx        # Ponto de entrada da aplicação
+```
+
+A navegação principal é organizada através do React Router, com layouts separados para as áreas autenticadas e de autenticação.
+
+## Rotas principais
+
+| Rota                | Descrição               |
+| ------------------- | ----------------------- |
+| `/feed`             | Feed principal          |
+| `/friends`          | Lista de amigos         |
+| `/friends-requests` | Solicitações de amizade |
+| `/profile`          | Perfil do usuário       |
+| `/login`            | Login                   |
+| `/register`         | Cadastro                |
+
+## Objetivos do projeto
+
+O Vínculo foi desenvolvido com foco em praticar conceitos importantes para aplicações Front-End modernas, principalmente:
+
+* Componentização com React
+* Criação de componentes reutilizáveis
+* Organização e escalabilidade de projetos
+* Gerenciamento de estado compartilhado
+* Hooks personalizados
+* Roteamento no lado do cliente
+* Separação de responsabilidades
+* Consumo e organização de serviços
+* Formatação e manipulação de datas
+* Feedback visual para ações do usuário
+* Animações de interface
+* Desenvolvimento de interfaces responsivas
+
+## Autor
+
+Desenvolvido por **Jackson Coelho Roque**.
+
+* GitHub: [@jacksoncroque](https://github.com/jacksoncroque)
+* LinkedIn: [Jackson Coelho Roque](https://www.linkedin.com/in/jacksoncrq)
+* Portfólio: [Jackson Coelho Roque](https://jacksoncroque.com/)
+
+## Licença
+
+Este projeto foi desenvolvido para fins de estudo e portfólio.
