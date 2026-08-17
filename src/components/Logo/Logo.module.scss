@@ -1,12 +1,12 @@
 .container {
-  & > h3 {
-    color: #6897f1;
-    & > span {
-      padding: .5rem 0.75rem;
-      background-color: #6897f1;
-      border-radius: 1rem;
-      margin: 0.5rem;
-      color: #fff;
-    }
-  }
+   & > h3 {
+      color: #6897f1;
+      & > span {
+         padding: 0.5rem 0.75rem;
+         background-color: #6897f1;
+         border-radius: 1rem;
+         margin: 0.5rem;
+         color: #fff;
+      }
+   }
 }

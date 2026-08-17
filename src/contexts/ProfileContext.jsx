@@ -89,7 +89,7 @@ const ProfileProvider = ({ children }) => {
          const res = await updateMe({ name: state.user, email: state.email });
 
          console.log(res);
-         
+
          if (res.success) {
             console.log('oi');
 
