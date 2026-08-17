@@ -65,7 +65,8 @@ const Feed = () => {
                <Card>
                   <div className={styles.containerWrapperAsideFooter}>
                      <p>
-                        <strong>vínculo</strong> · Criado por <a href="https://jacksoncoelho-web-portfolio.vercel.app/">Jackson</a>. 
+                        <strong>vínculo</strong> · Criado por{' '}
+                        <a href="https://jacksoncoelho-web-portfolio.vercel.app/">Jackson</a>.
                      </p>
                   </div>
                </Card>

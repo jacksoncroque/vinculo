@@ -1,50 +1,50 @@
 :root {
-  /* Fontes */
-  --font-sans: 'Inter', Arial, Helvetica, sans-serif;
+   /* Fontes */
+   --font-sans: 'Inter', Arial, Helvetica, sans-serif;
 
-  /* Cores base */
-  --color-background: #f6fbff;
-  --color-surface: #eef6fd;
-  --color-card: #ffffff;
-  --color-text: #000000b6;
-  --color-text-muted: #5f6a7b;
+   /* Cores base */
+   --color-background: #f6fbff;
+   --color-surface: #eef6fd;
+   --color-card: #ffffff;
+   --color-text: #000000b6;
+   --color-text-muted: #5f6a7b;
 
-  /* Marca */
-  --color-primary: #507ef1;
-  --color-primary-hover: #3f6ee0;
-  --color-primary-soft: #EAF3FC;
-  --color-primary-contrast: #f9fcff;
+   /* Marca */
+   --color-primary: #507ef1;
+   --color-primary-hover: #3f6ee0;
+   --color-primary-soft: #eaf3fc;
+   --color-primary-contrast: #f9fcff;
 
-  /* Estados */
-  --color-success: #32b36e;
-  --color-danger: #de3b3d;
-  --color-warning: #c39900;
+   /* Estados */
+   --color-success: #32b36e;
+   --color-danger: #de3b3d;
+   --color-warning: #c39900;
 
-  /* Estrutura */
-  --color-border: #dbe2e9;
-  --color-input: #e2e9f0;
-  --color-focus: #507ef159;
+   /* Estrutura */
+   --color-border: #dbe2e9;
+   --color-input: #e2e9f0;
+   --color-focus: #507ef159;
 
-  /* Layout */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.875rem;
-  --radius-lg: 1.25rem;
+   /* Layout */
+   --radius-sm: 0.5rem;
+   --radius-md: 0.875rem;
+   --radius-lg: 1.25rem;
 
-  /* Tipografia */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
+   /* Tipografia */
+   --text-xs: 0.75rem;
+   --text-sm: 0.875rem;
+   --text-base: 1rem;
+   --text-lg: 1.125rem;
+   --text-xl: 1.25rem;
+   --text-2xl: 1.5rem;
 
-  /* Pesos */
-  --font-normal: 400;
-  --font-medium: 500;
-  --font-semibold: 600;
-  --font-bold: 700;
+   /* Pesos */
+   --font-normal: 400;
+   --font-medium: 500;
+   --font-semibold: 600;
+   --font-bold: 700;
 
-  /*Containers*/
-  --max-container-width: 1200px;
-  --navbar-height: 4rem;
+   /*Containers*/
+   --max-container-width: 1200px;
+   --navbar-height: 4rem;
 }

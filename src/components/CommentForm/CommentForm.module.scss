@@ -1,29 +1,29 @@
 .container {
-  display: flex;
-  width: 100%;
-  align-items: center;
+   display: flex;
+   width: 100%;
+   align-items: center;
 
-  &Avatar {
-    width: fit-content;
-    margin: 0 0.75rem 0 0;
-  }
+   &Avatar {
+      width: fit-content;
+      margin: 0 0.75rem 0 0;
+   }
 
-  &Input {
-    width: 100%;
-    margin: 0.5rem;
-    & > div {
-      & > input {
-        align-items: center;
-        height: 3rem;
+   &Input {
+      width: 100%;
+      margin: 0.5rem;
+      & > div {
+         & > input {
+            align-items: center;
+            height: 3rem;
+         }
       }
-    }
-  }
-  &Button {
-    & > div {
-      & > button {
-        align-items: center;
-        height: 3rem;
+   }
+   &Button {
+      & > div {
+         & > button {
+            align-items: center;
+            height: 3rem;
+         }
       }
-    }
-  }
+   }
 }
