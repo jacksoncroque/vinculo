@@ -5,7 +5,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
 import { login, register } from '../services/auth.service';
 import { tokenName } from '../services/api';
 
-import useSessionStorage from '../hooks/sessionStorage';
+import useSessionStorage from '../hooks/SessionStorage';
 import { getUsers } from '../services/users.service';
 
 const GlobalContext = createContext();
