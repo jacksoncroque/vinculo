@@ -8,7 +8,7 @@ O **Vínculo** permite que usuários criem uma conta, acessem um feed de publica
 
 ## Preview
 
-![Vínculo](./src/assets/preview.png)
+![Vínculo](/public/demo_vinculo.gif)
 
 ## Funcionalidades
 
@@ -35,6 +35,9 @@ O **Vínculo** permite que usuários criem uma conta, acessem um feed de publica
 * **React Router**
 * **Sass / SCSS**
 * **Framer Motion**
+
+### Back-End
+O Back-End do Vínculo foi desenvolvido pelo [Demian](https://github.com/DemianPanassol1), sendo responsável pela API utilizada pelo Front-End para comunicação com os dados da aplicação.
 
 ## Estrutura do projeto
 
@@ -83,6 +86,28 @@ O Vínculo foi desenvolvido com foco em praticar conceitos importantes para apli
 * Feedback visual para ações do usuário
 * Animações de interface
 * Desenvolvimento de interfaces responsivas
+
+## Execução
+
+O projeto ainda não possui uma versão publicada para acesso direto pelo navegador. Para executar o Vínculo localmente, é necessário ter o Node.js instalado.
+
+Clone o repositório:
+
+```git clone https://github.com/jacksoncroque/vinculo.git```
+
+Entre na pasta do projeto:
+
+```cd vinculo```
+
+Instale as dependências:
+
+```npm install```
+
+Inicie o servidor de desenvolvimento:
+
+```npm run dev```
+
+Após iniciar o servidor, o Vite disponibilizará a aplicação em um endereço local indicado no terminal.
 
 ## Autor
 
