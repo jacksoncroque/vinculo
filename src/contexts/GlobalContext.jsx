@@ -190,11 +190,9 @@ const GlobalProvider = ({ children }) => {
       };
    }, [state.inputValue, debouncedSearch]);
 
-   useEffect(() => {
-   }, [state.usersList]);
+   useEffect(() => {}, [state.usersList]);
 
-   useEffect(() => {
-   }, [state.inputValue]);
+   useEffect(() => {}, [state.inputValue]);
 
    const values = {
       state,
