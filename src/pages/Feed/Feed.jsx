@@ -65,8 +65,7 @@ const Feed = () => {
                <Card>
                   <div className={styles.containerWrapperAsideFooter}>
                      <p>
-                        <strong>vínculo</strong> · uma referência visual de design para uma rede
-                        social leve. Adapte livremente em React + SCSS.
+                        <strong>vínculo</strong> · Criado por <a href="https://jacksoncoelho-web-portfolio.vercel.app/">Jackson</a>. 
                      </p>
                   </div>
                </Card>

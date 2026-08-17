@@ -1,7 +1,7 @@
 import { api } from './api';
 
 const getUsers = async (search = '') => {
-   const res = await api.get(`users?${search}`);
+   const res = await api.get(`users?search=${search}`);
    return res;
 };
 
