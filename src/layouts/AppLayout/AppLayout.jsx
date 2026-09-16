@@ -1,21 +1,47 @@
-import { Outlet } from 'react-router';
+import { Navigate, Outlet } from 'react-router';
+
+import { FriendsProvider } from '../../contexts/FriendsContext';
+import { ProfileProvider } from '../../contexts/ProfileContext';
+import { FeedProvider } from '../../contexts/FeedContext';
+
+import { useGlobalContext } from '../../contexts/GlobalContext';
+import useSessionStorage from '../../hooks/SessionStorage';
+
+import Navbar from '../../components/Navbar/Navbar';
+
+import { tokenName } from '../../services/api';
 
 import styles from './AppLayout.module.scss';
-import Navbar from '../../components/Navbar/Navbar';
-import { UserContext } from '../../contexts/UserContext';
 
 const AppLayout = () => {
-  return (
-    <UserContext>
-      <div className={styles.container}>
-        <Navbar />
+   const { getItem } = useSessionStorage(tokenName);
 
-        <div className={styles.containerWrapper}>
-          <Outlet />
-        </div>
-      </div>
-    </UserContext>
-  );
+   const session = getItem() ?? {};
+
+   if (!session.isAuthenticated) {
+      return (
+         <Navigate
+            to={'/login'}
+            replace
+         />
+      );
+   }
+
+   return (
+      <ProfileProvider>
+         <FeedProvider>
+            <FriendsProvider>
+               <div className={styles.container}>
+                  <Navbar />
+
+                  <div className={styles.containerWrapper}>
+                     <Outlet />
+                  </div>
+               </div>
+            </FriendsProvider>
+         </FeedProvider>
+      </ProfileProvider>
+   );
 };
 
 export default AppLayout;
